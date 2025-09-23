@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Tailoring Shop{% endblock %}
+
+{% block content %}
+<!-- ✅ Greeting Message at the Top with Fade-in -->
+{% if user.is_authenticated %}
+<div class="alert alert-success text-center shadow-sm rounded-3 mb-4 fade show" id="welcomeAlert">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hand-thumbs-up me-2" viewBox="0 0 16 16">
+    <path d="M6.956 1.745C7.021.81 7.918.073 8.864.325l.261.065c.464.12.874.378 1.155.732.37.474.575 1.06.52 1.664l-.05.479-.272 1.338h3.356c.896 0 1.483.878 1.175 1.71l-1.26 3.495a1.632 1.632 0 0 1-1.508 1.056H9.837c-.548 0-1.088.11-1.59.322l-.668.287a1.493 1.493 0 0 1-1.926-.77L4.73 9.042a1.494 1.494 0 0 1-.117-.596V6.25c0-.69.56-1.25 1.25-1.25h1.27l.203-1.02.62-2.235z"/>
+  </svg>
+  <span class="fw-bold">Welcome back, {{ user.username }} 👋</span>
+</div>
+{% endif %}
+
+
+<!-- Hero Section -->
+<div class="p-5 mb-5 bg-light rounded-3 shadow-sm">
+  <div class="container-fluid py-5 text-center">
+    <h1 class="display-4 fw-bold">Welcome to Tailoring Shop</h1>
+    <p class="lead">Custom-made clothing, precise measurements, and fast delivery.</p>
+    
+    {% if user.is_authenticated %}
+      <a href="{% url 'my_orders' %}" class="btn btn-primary btn-lg mt-3">View My Orders</a>
+    {% else %}
+      <a href="{% url 'register' %}" class="btn btn-success btn-lg">Get Started</a>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Product Section -->
+<div class="container">
+    <h2 class="text-center mb-4">Our Tailoring Products</h2>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" 
+                class="card-img-top" style="height: 250px; object-fit: cover;">
+                {% else %}
+                <img src="https://via.placeholder.com/300x200" class="card-img-top rounded-top" alt="No image">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ product.name }}</h5>
+                    <p class="card-text text-muted">{{ product.description|truncatewords:15 }}</p>
+                    <p class="fw-bold text-primary">₦{{ product.price }}</p>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'create_order' product.id %}" class="btn btn-primary w-100">Order Now</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-secondary w-100">Login to Order</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No products available at the moment.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

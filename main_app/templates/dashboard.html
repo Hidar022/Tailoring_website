@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Tailoring Shop{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">📊 Dashboard</h2>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm p-4 text-center">
+                <h4>Total Orders</h4>
+                <p class="display-5">{{ orders_count }}</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm p-4 text-center">
+                <h4>Measurements Saved</h4>
+                <p class="display-5">{{ measurements_count }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-3">
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary">⬅ Back to Home</a>
+    </div>
+</div>
+{% endblock %}

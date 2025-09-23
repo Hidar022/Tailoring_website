@@ -1,0 +1,127 @@
+/* ==============================
+   Navbar Styles
+============================== */
+.navbar-dark .navbar-nav .nav-link {
+    transition: all 0.3s ease-in-out;
+    border-radius: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.navbar-dark .navbar-nav .nav-link.active {
+    background-color: #0d6efd;
+    color: #fff !important;
+}
+
+/* ==============================
+   Footer Styles
+============================== */
+footer {
+    background: linear-gradient(to right, #212529, #343a40);
+    color: #ccc;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+footer p:hover {
+    color: #fff;
+    text-shadow: 0px 0px 8px rgba(13, 110, 253, 0.7);
+    transform: scale(1.02);
+}
+
+/* ==============================
+   Product Cards
+============================== */
+.product-card {
+    transition: all 0.3s ease-in-out;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+.product-card img {
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.4s ease; /* smooth zoom */
+}
+.product-card img:hover {
+    transform: scale(1.1); /* zoom on hover */
+}
+.product-card .btn:hover {
+    transform: scale(1.05);
+}
+
+/* ==============================
+   Buttons
+============================== */
+.btn {
+    transition: all 0.3s ease-in-out;
+}
+.btn:hover {
+    transform: scale(1.03);
+}
+
+/* ==============================
+   General Form Styling
+============================== */
+.form-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease-in-out;
+    background: #ffffff;
+}
+.form-card:hover {
+    transform: translateY(-5px);
+}
+.form-card .card-header {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.form-card .form-control {
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+}
+.form-card .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.2);
+}
+.form-card button {
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+.form-card button:hover {
+    background-color: #0b5ed7;
+    transform: scale(1.05);
+}
+
+#welcomeAlert {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeInDown 0.8s ease forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

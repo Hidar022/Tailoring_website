@@ -1,0 +1,62 @@
+[
+  {
+    "model": "main_app.product",
+    "pk": 1,
+    "fields": {
+      "name": "Black Suit",
+      "description": "Classic tailored black suit, perfect for formal occasions and business meetings.",
+      "price": "30000.00",
+      "image": "products/black-suit.jpg"
+    }
+  },
+  {
+    "model": "main_app.product",
+    "pk": 2,
+    "fields": {
+      "name": "African Gown",
+      "description": "Elegant African gown with vibrant Ankara patterns, ideal for weddings and events.",
+      "price": "25000.00",
+      "image": "products/african-gown.jpg"
+    }
+  },
+  {
+    "model": "main_app.product",
+    "pk": 3,
+    "fields": {
+      "name": "Wedding Dress",
+      "description": "Beautiful white wedding gown with fine lace details for a perfect bridal look.",
+      "price": "60000.00",
+      "image": "products/wedding-dress.jpg"
+    }
+  },
+  {
+    "model": "main_app.product",
+    "pk": 4,
+    "fields": {
+      "name": "White Shirt",
+      "description": "Premium cotton white shirt, suitable for formal and casual occasions.",
+      "price": "8000.00",
+      "image": "products/white-shirt.jpg"
+    }
+  },
+  {
+    "model": "main_app.product",
+    "pk": 5,
+    "fields": {
+      "name": "Blue Shirt",
+      "description": "Smart casual blue shirt with modern fit and breathable fabric.",
+      "price": "9000.00",
+      "image": "products/blue-shirt.jpg"
+    }
+  },
+  {
+    "model": "main_app.product",
+    "pk": 6,
+    "fields": {
+      "name": "Casual Trousers",
+      "description": "Slim-fit trousers made with durable fabric, perfect for work or outings.",
+      "price": "12000.00",
+      "image": "products/casual-trousers.jpg"
+    }
+  }
+]

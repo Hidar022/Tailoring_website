@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us - Tailoring Shop{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">About Us</li>
+        </ol>
+    </nav>
+
+    <h2 class="text-center mb-4">👕 About Us</h2>
+    <div class="card shadow-sm p-4">
+        <p>
+            Welcome to <strong>Tailoring Shop</strong> — your one-stop solution for custom-made clothing.  
+            We specialize in delivering perfectly tailored outfits that suit your unique style and measurements.
+        </p>
+        <p>
+            Our mission is simple: <em>to provide affordable, high-quality, and fast tailoring services</em>.  
+            Whether it’s casual wear, corporate attire, or traditional outfits, we’ve got you covered.
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Order - Tailoring Shop{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+    <div class="card form-card shadow-lg">
+        <div class="card-header bg-dark text-white text-center">
+            <h4>Order Product</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="text-center">{{ product.name }}</h5>
+            <p class="text-center fw-bold">₦{{ product.price }}</p>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" name="quantity" class="form-control" min="1" value="1" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Place Order</button>
+            </form>
+        </div>
+    </div>
+    <div class="text-center mt-3">
+    <a href="{% url 'home' %}" class="btn btn-outline-secondary">⬅ Back to Home</a>
+    </div>
+</div>
+{% endblock %}
