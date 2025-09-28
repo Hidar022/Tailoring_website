@@ -20,26 +20,55 @@
                     </select>
                 </div>
 
-                <!-- Common Fields -->
-                <div class="mb-3">
+                <!-- Women Only Fields -->
+                <div class="mb-3 d-none" id="bust-field">
+                    <label for="bust" class="form-label">Bust (cm)</label>
+                    <input type="number" step="0.1" class="form-control" id="bust" name="bust">
+                </div>
+                <div class="mb-3 d-none" id="height-field">
                     <label for="height" class="form-label">Height (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="height" name="height" required>
+                    <input type="number" step="0.1" class="form-control" id="height" name="height">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none" id="chest-field">
                     <label for="chest" class="form-label">Chest (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="chest" name="chest" required>
+                    <input type="number" step="0.1" class="form-control" id="chest" name="chest">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none" id="waist-field">
                     <label for="waist" class="form-label">Waist (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="waist" name="waist" required>
+                    <input type="number" step="0.1" class="form-control" id="waist" name="waist">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none" id="hips-field">
                     <label for="hips" class="form-label">Hips (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="hips" name="hips" required>
+                    <input type="number" step="0.1" class="form-control" id="hips" name="hips">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none" id="arm-length-field">
                     <label for="arm_length" class="form-label">Arm Length (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="arm_length" name="arm_length" required>
+                    <input type="number" step="0.1" class="form-control" id="arm_length" name="arm_length">
+                </div>
+                <!-- Men Only Fields -->
+                <div class="mb-3 d-none" id="shoulder-field">
+                    <label for="shoulder" class="form-label">Shoulder (cm)</label>
+                    <input type="number" step="0.1" class="form-control" id="shoulder" name="shoulder">
+                </div>
+                <div class="mb-3 d-none" id="hand-field">
+                    <label for="hand" class="form-label">Hand Length (cm)</label>
+                    <input type="number" step="0.1" class="form-control" id="hand" name="hand">
+                </div>
+                <div class="mb-3 d-none" id="shirt-length-field">
+                    <label for="shirt_length" class="form-label">Shirt Length (cm)</label>
+                    <input type="number" step="0.1" class="form-control" id="shirt_length" name="shirt_length">
+                </div>
+                <div class="mb-3 d-none" id="trouser-length-field">
+                    <label for="trouser_length" class="form-label">Trouser Length (cm)</label>
+                    <input type="number" step="0.1" class="form-control" id="trouser_length" name="trouser_length">
+                </div>
+                <div class="mb-3 d-none" id="neck-size-field">
+                    <label for="neck_size" class="form-label">Neck Size (cm)</label>
+                    <input type="number" step="0.1" class="form-control" id="neck_size" name="neck_size">
+                </div>
+                <div class="mb-3 d-none" id="shirt-size-field">
+                    <label for="shirt_size" class="form-label">Shirt Size</label>
+                    <input type="text" class="form-control" id="shirt_size" name="shirt_size">
                 </div>
 
                 <!-- Women Only -->
@@ -92,10 +121,22 @@
     const trouserLengthField = document.getElementById("trouser-length-field");
     const neckSizeField = document.getElementById("neck-size-field");
     const shirtSizeField = document.getElementById("shirt-size-field");
+    const heightField = document.getElementById("height-field");
+    const chestField = document.getElementById("chest-field");
+    const waistField = document.getElementById("waist-field");
+    const hipsField = document.getElementById("hips-field");
+    const armLengthField = document.getElementById("arm-length-field");
 
     genderSelect.addEventListener("change", function () {
         if (this.value === "female") {
+            // Show only women fields
             bustField.classList.remove("d-none");
+            heightField.classList.remove("d-none");
+            chestField.classList.remove("d-none");
+            waistField.classList.remove("d-none");
+            hipsField.classList.remove("d-none");
+            armLengthField.classList.remove("d-none");
+            // Hide men fields
             shoulderField.classList.add("d-none");
             handField.classList.add("d-none");
             shirtLengthField.classList.add("d-none");
@@ -103,14 +144,22 @@
             neckSizeField.classList.add("d-none");
             shirtSizeField.classList.add("d-none");
         } else if (this.value === "male") {
-            bustField.classList.add("d-none");
+            // Show only men fields
             shoulderField.classList.remove("d-none");
             handField.classList.remove("d-none");
             shirtLengthField.classList.remove("d-none");
             trouserLengthField.classList.remove("d-none");
             neckSizeField.classList.remove("d-none");
             shirtSizeField.classList.remove("d-none");
+            // Hide women fields
+            bustField.classList.add("d-none");
+            heightField.classList.add("d-none");
+            chestField.classList.add("d-none");
+            waistField.classList.add("d-none");
+            hipsField.classList.add("d-none");
+            armLengthField.classList.add("d-none");
         } else {
+            // Hide all fields
             bustField.classList.add("d-none");
             shoulderField.classList.add("d-none");
             handField.classList.add("d-none");
@@ -118,6 +167,11 @@
             trouserLengthField.classList.add("d-none");
             neckSizeField.classList.add("d-none");
             shirtSizeField.classList.add("d-none");
+            heightField.classList.add("d-none");
+            chestField.classList.add("d-none");
+            waistField.classList.add("d-none");
+            hipsField.classList.add("d-none");
+            armLengthField.classList.add("d-none");
         }
     });
 </script>
