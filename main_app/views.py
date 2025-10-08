@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Product, Order, Measurement, Profile
+from .forms import ProfileForm
 
 
 # -----------------------
@@ -14,30 +15,20 @@ def home(request):
     return render(request, "home.html", {"products": products})
 
 
-# -----------------------
-# Profile Page (Create or Update)
-# -----------------------
 @login_required
 def profile(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
-    if request.method == "POST":
-        profile.full_name = request.POST.get("full_name")
-        profile.date_of_birth = request.POST.get("date_of_birth")
-        profile.gender = request.POST.get("gender")
-        profile.phone = request.POST.get("phone")
-        profile.address = request.POST.get("address")
-        profile.occupation = request.POST.get("occupation")
-        profile.city = request.POST.get("city")
-        profile.state = request.POST.get("state")
-        profile.country = request.POST.get("country")
-        if request.FILES.get("profile_picture"):
-            profile.profile_picture = request.FILES.get("profile_picture")
-        profile.save()
-        messages.success(request, "Profile updated successfully ✅")
-        return redirect("profile")
 
-    return render(request, "profile.html", {"user": request.user, "profile": profile})
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            # ✅ Ensure the profile is saved and reloads correctly
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=profile)
 
+    return render(request, 'profile.html', {'form': form, 'profile': profile})
 
 # -----------------------
 # User Registration
