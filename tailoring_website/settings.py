@@ -90,3 +90,10 @@ LOGIN_REDIRECT_URL = 'home'     # after login → send user to home
 LOGOUT_REDIRECT_URL = 'login'   # after logout → send user to login
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# End session when browser closes
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Optional: This ensures the session does not persist
+SESSION_COOKIE_AGE = 0  # expires immediately when browser closes
+

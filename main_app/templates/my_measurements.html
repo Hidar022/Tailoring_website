@@ -6,12 +6,12 @@
 <div class="container mt-5">
     <h2 class="text-center mb-4">📏 My Measurements</h2>
 
-    <!-- Women's Measurements -->
-    <h4 class="mt-4 text-pink">👩 Women's Measurements</h4>
+    <!-- ✅ Women's Measurements -->
+    <h4 class="mt-4 text-danger">👩 Women's Measurements</h4>
     {% if female_measurements %}
         <div class="table-responsive mb-4">
             <table class="table table-bordered text-center align-middle shadow-sm">
-                <thead style="background-color: #f8d7da; color: #721c24;">
+                <thead class="table-danger">
                     <tr>
                         <th>👩</th>
                         <th>Date Added</th>
@@ -35,22 +35,24 @@
                             <td>{{ m.hips }}</td>
                             <td>{{ m.arm_length }}</td>
                             <td>{{ m.bust }}</td>
-                            <td><a href="{% url 'edit_measurement' m.id %}" class="btn btn-sm btn-warning">✏️ Edit</a></td>
+                            <td>
+                                <a href="{% url 'edit_measurement' m.id %}" class="btn btn-sm btn-warning">✏️ Edit</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     {% else %}
-        <div class="alert alert-warning">No measurements found for women.</div>
+        <div class="alert alert-warning">⚠️ No measurements found for women.</div>
     {% endif %}
 
-    <!-- Men's Measurements -->
+    <!-- ✅ Men's Measurements -->
     <h4 class="mt-4 text-primary">👨 Men's Measurements</h4>
     {% if male_measurements %}
         <div class="table-responsive mb-4">
             <table class="table table-bordered text-center align-middle shadow-sm">
-                <thead style="background-color: #cfe2ff; color: #084298;">
+                <thead class="table-primary">
                     <tr>
                         <th>👨</th>
                         <th>Date Added</th>
@@ -84,20 +86,24 @@
                             <td>{{ m.trouser_length }}</td>
                             <td>{{ m.neck_size }}</td>
                             <td>{{ m.shirt_size }}</td>
-                            <td><a href="{% url 'edit_measurement' m.id %}" class="btn btn-sm btn-warning">✏️ Edit</a></td>
+                            <td>
+                                <a href="{% url 'edit_measurement' m.id %}" class="btn btn-sm btn-warning">✏️ Edit</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     {% else %}
-        <div class="alert alert-warning">No measurements found for men.</div>
+        <div class="alert alert-warning">⚠️ No measurements found for men.</div>
     {% endif %}
+
+    <!-- Add New Measurement Button -->
     <div class="text-center mt-4">
-    <a href="{% url 'add_measurements' %}" class="btn btn-primary btn-lg">
-        ➕ Add New Measurement
-    </a>
-</div>
+        <a href="{% url 'add_measurements' %}" class="btn btn-primary btn-lg">
+            ➕ Add New Measurement
+        </a>
+    </div>
 
 </div>
 {% endblock %}

@@ -1,0 +1,23 @@
+Chapter 1: Introduction
+
+1.1 Background of the Study
+The fashion and tailoring industry is rapidly evolving, with increasing demand for personalized clothing and efficient service delivery. Traditional tailoring businesses often face challenges in managing customer orders, measurements, and communication. Leveraging technology through a web-based platform can streamline these processes, improve customer experience, and enhance business operations.
+
+1.2 Statement of the Problem
+Tailoring businesses struggle with manual record-keeping, delayed order processing, and limited customer engagement. There is a need for an automated system that allows customers to place orders, submit measurements, and track their orders online, while enabling tailors to manage their workflow efficiently.
+
+1.3 Objectives of the Project
+General Objective:
+To develop a web-based tailoring management system that facilitates seamless interaction between customers and tailors.
+
+Specific Objectives:
+- To enable customers to register, log in, and manage their profiles.
+- To allow customers to submit measurements and place orders online.
+- To provide tailors with tools to manage orders, view customer measurements, and update order status.
+- To enhance communication between customers and tailors through the platform.
+
+1.4 Significance of the Study
+This project will benefit tailoring businesses by automating their operations, reducing errors, and improving customer satisfaction. Customers will enjoy a convenient way to interact with tailors, place orders, and receive updates. The study also contributes to the adoption of technology in small and medium enterprises.
+
+1.5 Scope and Limitations
+The system will focus on core tailoring business processes such as customer registration, measurement submission, order placement, and order tracking. It will not cover advanced features like payment integration or inventory management in the initial phase.

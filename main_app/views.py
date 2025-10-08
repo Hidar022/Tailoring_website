@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Product, Order, Measurement
+from .models import Product, Order, Measurement, Profile
+
 
 # -----------------------
 # Home page
@@ -11,6 +12,32 @@ from .models import Product, Order, Measurement
 def home(request):
     products = Product.objects.all()
     return render(request, "home.html", {"products": products})
+
+
+# -----------------------
+# Profile Page (Create or Update)
+# -----------------------
+@login_required
+def profile(request):
+    profile, created = Profile.objects.get_or_create(user=request.user)
+    if request.method == "POST":
+        profile.full_name = request.POST.get("full_name")
+        profile.date_of_birth = request.POST.get("date_of_birth")
+        profile.gender = request.POST.get("gender")
+        profile.phone = request.POST.get("phone")
+        profile.address = request.POST.get("address")
+        profile.occupation = request.POST.get("occupation")
+        profile.city = request.POST.get("city")
+        profile.state = request.POST.get("state")
+        profile.country = request.POST.get("country")
+        if request.FILES.get("profile_picture"):
+            profile.profile_picture = request.FILES.get("profile_picture")
+        profile.save()
+        messages.success(request, "Profile updated successfully ✅")
+        return redirect("profile")
+
+    return render(request, "profile.html", {"user": request.user, "profile": profile})
+
 
 # -----------------------
 # User Registration
@@ -36,6 +63,7 @@ def register(request):
 
     return render(request, "register.html")
 
+
 # -----------------------
 # User Login
 # -----------------------
@@ -55,6 +83,7 @@ def login_user(request):
 
     return render(request, "login.html")
 
+
 # -----------------------
 # User Logout
 # -----------------------
@@ -64,12 +93,6 @@ def logout_user(request):
     messages.success(request, "Logged out successfully ✅")
     return redirect("login")
 
-# -----------------------
-# Dashboard (optional)
-# -----------------------
-@login_required
-def dashboard(request):
-    return render(request, "dashboard.html")
 
 # -----------------------
 # About & Contact
@@ -78,7 +101,8 @@ def about(request):
     return render(request, "about.html")
 
 def contact(request):
-    return render(request,"contact.html")
+    return render(request, "contact.html")
+
 
 # -----------------------
 # Add or Edit Measurements
@@ -117,23 +141,21 @@ def add_measurements(request):
 
         return render(request, "add_measurements.html")
 
+
 @login_required
 def my_measurements(request):
-    # Separate female and male measurements
-    female_measurements = Measurement.objects.filter(user=request.user, gender="female").order_by("-date_added")
-    male_measurements = Measurement.objects.filter(user=request.user, gender="male").order_by("-date_added")
+    female_measurements = Measurement.objects.filter(
+        user=request.user, gender="female"
+    ).order_by("-date_added")
+    male_measurements = Measurement.objects.filter(
+        user=request.user, gender="male"
+    ).order_by("-date_added")
 
     context = {
         "female_measurements": female_measurements,
         "male_measurements": male_measurements,
     }
     return render(request, "my_measurements.html", context)
-
-
-    return render(request, "my_measurements.html", {
-        "female_measurements": female_measurements,
-        "male_measurements": male_measurements,
-    })
 
 
 @login_required
@@ -171,6 +193,7 @@ def edit_measurement(request, measurement_id):
 
     return render(request, "edit_measurement.html", {"measurement": measurement})
 
+
 # -----------------------
 # Order Product
 # -----------------------
@@ -189,6 +212,7 @@ def create_order(request, product_id):
         return redirect("my_orders")
 
     return render(request, "order.html", {"product": product})
+
 
 @login_required
 def my_orders(request):

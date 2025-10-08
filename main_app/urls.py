@@ -10,12 +10,13 @@ urlpatterns = [
     path('login/', views.login_user, name='login'),  # ✅ matches views.py
     path('logout/', views.logout_user, name='logout'),
 
-    # Dashboard (optional)
-    path('dashboard/', views.dashboard, name='dashboard'),
-
     # About & Contact
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
+
+
+    # Profile
+    path('profile/', views.profile, name='profile'),
 
     # Measurements
     path('add-measurements/', views.add_measurements, name='add_measurements'),
