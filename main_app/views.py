@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Product, Order, Measurement, Profile
-from .forms import ProfileForm
+from .models import Product, Order, Measurement
+
 
 
 # -----------------------
@@ -13,22 +13,6 @@ from .forms import ProfileForm
 def home(request):
     products = Product.objects.all()
     return render(request, "home.html", {"products": products})
-
-
-@login_required
-def profile(request):
-    profile, created = Profile.objects.get_or_create(user=request.user)
-
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            # ✅ Ensure the profile is saved and reloads correctly
-            return redirect('profile')
-    else:
-        form = ProfileForm(instance=profile)
-
-    return render(request, 'profile.html', {'form': form, 'profile': profile})
 
 # -----------------------
 # User Registration
