@@ -23,9 +23,6 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'my_orders' %}active{% endif %}" href="{% url 'my_orders' %}">My Orders</a>
                     </li>
                     {% if user.is_authenticated %}
