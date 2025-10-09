@@ -56,10 +56,6 @@
                     <tr>
                         <th>👨</th>
                         <th>Date Added</th>
-                        <th>Height (cm)</th>
-                        <th>Chest (cm)</th>
-                        <th>Waist (cm)</th>
-                        <th>Hips (cm)</th>
                         <th>Arm Length (cm)</th>
                         <th>Shoulder (cm)</th>
                         <th>Hand (cm)</th>
@@ -75,10 +71,6 @@
                         <tr>
                             <td><span class="badge bg-primary">👨</span></td>
                             <td>{{ m.date_added|date:"M d, Y" }}</td>
-                            <td>{{ m.height }}</td>
-                            <td>{{ m.chest }}</td>
-                            <td>{{ m.waist }}</td>
-                            <td>{{ m.hips }}</td>
                             <td>{{ m.arm_length }}</td>
                             <td>{{ m.shoulder }}</td>
                             <td>{{ m.hand }}</td>
@@ -106,4 +98,47 @@
     </div>
 
 </div>
+<script>
+    const showGender = "{{ show_gender }}";
+
+    // Function to add highlight animation
+    function highlightSection(selector, colorClass) {
+        const section = document.querySelector(selector);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth", block: "center" });
+
+            // Add highlight class
+            section.classList.add(colorClass, "highlight-glow");
+
+            // Remove after animation ends
+            setTimeout(() => {
+                section.classList.remove(colorClass, "highlight-glow");
+            }, 2000);
+        }
+    }
+
+    // Trigger based on gender
+    if (showGender === "male") {
+        highlightSection(".table-primary", "border-primary");
+    } else if (showGender === "female") {
+        highlightSection(".table-danger", "border-danger");
+    }
+</script>
+
+<style>
+/* ✨ Smooth glowing highlight effect */
+.highlight-glow {
+    box-shadow: 0 0 25px rgba(0, 123, 255, 0.7) !important;
+    transition: box-shadow 0.5s ease-in-out;
+    animation: glowPulse 1.5s ease-in-out 2;
+    border-radius: 8px;
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 0px rgba(0,0,0,0); }
+    50% { box-shadow: 0 0 20px rgba(255,193,7,0.8); }
+    100% { box-shadow: 0 0 0px rgba(0,0,0,0); }
+}
+</style>
+
 {% endblock %}

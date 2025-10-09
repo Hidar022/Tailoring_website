@@ -6,13 +6,13 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Order, Measurement
 
 
-
 # -----------------------
 # Home page
 # -----------------------
 def home(request):
     products = Product.objects.all()
     return render(request, "home.html", {"products": products})
+
 
 # -----------------------
 # User Registration
@@ -46,14 +46,14 @@ def login_user(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        user = authenticate(request, username=username, password=password)
 
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             messages.success(request, f"Welcome back, {user.username}! ✅")
             return redirect("home")
         else:
-            messages.error(request, "Invalid credentials ❌")
+            messages.error(request, "Invalid username or password ❌")
             return redirect("login")
 
     return render(request, "login.html")
@@ -84,51 +84,62 @@ def contact(request):
 # -----------------------
 @login_required
 def add_measurements(request):
-    try:
-        measurement = Measurement.objects.get(user=request.user)
-        return redirect("edit_measurement", measurement_id=measurement.id)
-    except Measurement.DoesNotExist:
-        if request.method == "POST":
-            gender = request.POST.get("gender")
-            measurement = Measurement(
-                user=request.user,
-                gender=gender,
-                height=request.POST.get("height"),
-                chest=request.POST.get("chest"),
-                waist=request.POST.get("waist"),
-                hips=request.POST.get("hips"),
-                arm_length=request.POST.get("arm_length"),
-            )
+    if request.method == "POST":
+        gender = request.POST.get("gender")
 
-            if gender == "female":
-                measurement.bust = request.POST.get("bust")
-            else:
-                measurement.shoulder = request.POST.get("shoulder")
-                measurement.hand = request.POST.get("hand")
-                measurement.shirt_length = request.POST.get("shirt_length")
-                measurement.trouser_length = request.POST.get("trouser_length")
-                measurement.neck_size = request.POST.get("neck_size")
-                measurement.shirt_size = request.POST.get("shirt_size")
+        # ✅ Check if user already has a measurement for this gender
+        measurement, created = Measurement.objects.get_or_create(user=request.user, gender=gender)
 
-            measurement.save()
-            messages.success(request, "Measurement added successfully ✅")
-            return redirect("my_measurements")
+        # Common fields
+        measurement.height = request.POST.get("height")
+        measurement.chest = request.POST.get("chest")
+        measurement.waist = request.POST.get("waist")
+        measurement.hips = request.POST.get("hips")
+        measurement.arm_length = request.POST.get("arm_length")
 
-        return render(request, "add_measurements.html")
+        # Gender-specific fields
+        if gender == "female":
+            measurement.bust = request.POST.get("bust")
+            measurement.shoulder = None
+            measurement.hand = None
+            measurement.shirt_length = None
+            measurement.trouser_length = None
+            measurement.neck_size = None
+            measurement.shirt_size = None
+        else:
+            measurement.shoulder = request.POST.get("shoulder")
+            measurement.hand = request.POST.get("hand")
+            measurement.shirt_length = request.POST.get("shirt_length")
+            measurement.trouser_length = request.POST.get("trouser_length")
+            measurement.neck_size = request.POST.get("neck_size")
+            measurement.shirt_size = request.POST.get("shirt_size")
+            measurement.bust = None
+
+        measurement.save()
+
+        if created:
+            messages.success(request, f"{gender.capitalize()} measurement added successfully ✅")
+        else:
+            messages.success(request, f"{gender.capitalize()} measurement updated successfully ✅")
+
+        # ✅ Redirect with gender flag to highlight section
+        return redirect(f"/my-measurements/?show={gender}")
+
+    return render(request, "add_measurements.html")
 
 
 @login_required
 def my_measurements(request):
-    female_measurements = Measurement.objects.filter(
-        user=request.user, gender="female"
-    ).order_by("-date_added")
-    male_measurements = Measurement.objects.filter(
-        user=request.user, gender="male"
-    ).order_by("-date_added")
+    female_measurements = Measurement.objects.filter(user=request.user, gender="female").order_by("-date_added")
+    male_measurements = Measurement.objects.filter(user=request.user, gender="male").order_by("-date_added")
+
+    # ✅ Detect which gender section to highlight (after adding/editing)
+    show_gender = request.GET.get("show", None)
 
     context = {
         "female_measurements": female_measurements,
         "male_measurements": male_measurements,
+        "show_gender": show_gender,  # used in template
     }
     return render(request, "my_measurements.html", context)
 
@@ -164,7 +175,7 @@ def edit_measurement(request, measurement_id):
 
         measurement.save()
         messages.success(request, "Measurement updated successfully ✅")
-        return redirect("my_measurements")
+        return redirect(f"/my-measurements/?show={measurement.gender}")
 
     return render(request, "edit_measurement.html", {"measurement": measurement})
 

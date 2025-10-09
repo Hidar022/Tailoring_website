@@ -4,121 +4,107 @@
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card shadow-sm p-4">
-            <h3 class="text-center mb-4">Add Your Measurements ✍️</h3>
-            <form method="POST">
-                {% csrf_token %}
+  <div class="col-md-6">
+    <div class="card shadow-sm p-4">
+      <h3 class="text-center mb-4">Add Your Measurements ✍️</h3>
+      <form method="POST">
+        {% csrf_token %}
 
-                <!-- Gender Selection -->
-                <div class="mb-3">
-                    <label for="gender" class="form-label">Select Gender</label>
-                    <select class="form-control" id="gender" name="gender" required>
-                        <option value="">-- Select --</option>
-                        <option value="male">Men's</option>
-                        <option value="female">Women's</option>
-                    </select>
-                </div>
-
-                <!-- Common Fields -->
-                <div class="mb-3">
-                    <label for="height" class="form-label">Height (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="height" name="height" required>
-                </div>
-                <div class="mb-3">
-                    <label for="chest" class="form-label">Chest (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="chest" name="chest" required>
-                </div>
-                <div class="mb-3">
-                    <label for="waist" class="form-label">Waist (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="waist" name="waist" required>
-                </div>
-                <div class="mb-3">
-                    <label for="hips" class="form-label">Hips (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="hips" name="hips" required>
-                </div>
-                <div class="mb-3">
-                    <label for="arm_length" class="form-label">Arm Length (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="arm_length" name="arm_length" required>
-                </div>
-
-                <!-- Women Only -->
-                <div class="mb-3 d-none" id="bust-field">
-                    <label for="bust" class="form-label">Bust (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="bust" name="bust">
-                </div>
-
-                <!-- Men Only -->
-                <div class="mb-3 d-none" id="shoulder-field">
-                    <label for="shoulder" class="form-label">Shoulder (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="shoulder" name="shoulder">
-                </div>
-                <div class="mb-3 d-none" id="hand-field">
-                    <label for="hand" class="form-label">Hand Length (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="hand" name="hand">
-                </div>
-                <div class="mb-3 d-none" id="shirt-length-field">
-                    <label for="shirt_length" class="form-label">Shirt Length (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="shirt_length" name="shirt_length">
-                </div>
-                <div class="mb-3 d-none" id="trouser-length-field">
-                    <label for="trouser_length" class="form-label">Trouser Length (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="trouser_length" name="trouser_length">
-                </div>
-                <div class="mb-3 d-none" id="neck-size-field">
-                    <label for="neck_size" class="form-label">Neck Size (cm)</label>
-                    <input type="number" step="0.1" class="form-control" id="neck_size" name="neck_size">
-                </div>
-                <div class="mb-3 d-none" id="shirt-size-field">
-                    <label for="shirt_size" class="form-label">Shirt Size</label>
-                    <input type="text" class="form-control" id="shirt_size" name="shirt_size">
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">Save Measurements ✅</button>
-            </form>
+        <!-- Gender Selection -->
+        <div class="mb-3">
+          <label for="gender" class="form-label">Select Gender</label>
+          <select class="form-control" id="gender" name="gender" required>
+            <option value="">-- Select --</option>
+            <option value="male">Men's</option>
+            <option value="female">Women's</option>
+          </select>
         </div>
+
+        <!-- Women Fields -->
+        <div id="female-fields" class="d-none">
+          <div class="mb-3">
+            <label for="height" class="form-label">Height (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="height" name="height">
+          </div>
+          <div class="mb-3">
+            <label for="chest" class="form-label">Chest (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="chest" name="chest">
+          </div>
+          <div class="mb-3">
+            <label for="waist" class="form-label">Waist (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="waist" name="waist">
+          </div>
+          <div class="mb-3">
+            <label for="hips" class="form-label">Hips (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="hips" name="hips">
+          </div>
+          <div class="mb-3">
+            <label for="arm_length" class="form-label">Arm Length (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="arm_length" name="arm_length">
+          </div>
+          <div class="mb-3">
+            <label for="bust" class="form-label">Bust (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="bust" name="bust">
+          </div>
+        </div>
+
+        <!-- Men Fields -->
+        <div id="male-fields" class="d-none">
+          <div class="mb-3">
+            <label for="arm_length_m" class="form-label">Arm Length (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="arm_length_m" name="arm_length">
+          </div>
+          <div class="mb-3">
+            <label for="shoulder" class="form-label">Shoulder (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="shoulder" name="shoulder">
+          </div>
+          <div class="mb-3">
+            <label for="hand" class="form-label">Hand (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="hand" name="hand">
+          </div>
+          <div class="mb-3">
+            <label for="shirt_length" class="form-label">Shirt Length (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="shirt_length" name="shirt_length">
+          </div>
+          <div class="mb-3">
+            <label for="trouser_length" class="form-label">Trouser Length (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="trouser_length" name="trouser_length">
+          </div>
+          <div class="mb-3">
+            <label for="neck_size" class="form-label">Neck Size (cm)</label>
+            <input type="number" step="0.1" class="form-control" id="neck_size" name="neck_size">
+          </div>
+          <div class="mb-3">
+            <label for="shirt_size" class="form-label">Shirt Size</label>
+            <input type="text" class="form-control" id="shirt_size" name="shirt_size">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Save Measurements ✅</button>
+      </form>
     </div>
-    <div class="text-center mt-3">
-        <a href="{% url 'home' %}" class="btn btn-outline-secondary">⬅ Back to Home</a>
-    </div>
+  </div>
+  <div class="text-center mt-3">
+    <a href="{% url 'home' %}" class="btn btn-outline-secondary">⬅ Back to Home</a>
+  </div>
 </div>
 
 <script>
-    const genderSelect = document.getElementById("gender");
-    const bustField = document.getElementById("bust-field");
-    const shoulderField = document.getElementById("shoulder-field");
-    const handField = document.getElementById("hand-field");
-    const shirtLengthField = document.getElementById("shirt-length-field");
-    const trouserLengthField = document.getElementById("trouser-length-field");
-    const neckSizeField = document.getElementById("neck-size-field");
-    const shirtSizeField = document.getElementById("shirt-size-field");
+  const genderSelect = document.getElementById("gender");
+  const femaleFields = document.getElementById("female-fields");
+  const maleFields = document.getElementById("male-fields");
 
-    genderSelect.addEventListener("change", function () {
-        if (this.value === "female") {
-            bustField.classList.remove("d-none");
-            shoulderField.classList.add("d-none");
-            handField.classList.add("d-none");
-            shirtLengthField.classList.add("d-none");
-            trouserLengthField.classList.add("d-none");
-            neckSizeField.classList.add("d-none");
-            shirtSizeField.classList.add("d-none");
-        } else if (this.value === "male") {
-            bustField.classList.add("d-none");
-            shoulderField.classList.remove("d-none");
-            handField.classList.remove("d-none");
-            shirtLengthField.classList.remove("d-none");
-            trouserLengthField.classList.remove("d-none");
-            neckSizeField.classList.remove("d-none");
-            shirtSizeField.classList.remove("d-none");
-        } else {
-            bustField.classList.add("d-none");
-            shoulderField.classList.add("d-none");
-            handField.classList.add("d-none");
-            shirtLengthField.classList.add("d-none");
-            trouserLengthField.classList.add("d-none");
-            neckSizeField.classList.add("d-none");
-            shirtSizeField.classList.add("d-none");
-        }
-    });
+  genderSelect.addEventListener("change", function () {
+    if (this.value === "female") {
+      femaleFields.classList.remove("d-none");
+      maleFields.classList.add("d-none");
+    } else if (this.value === "male") {
+      maleFields.classList.remove("d-none");
+      femaleFields.classList.add("d-none");
+    } else {
+      maleFields.classList.add("d-none");
+      femaleFields.classList.add("d-none");
+    }
+  });
 </script>
 {% endblock %}
