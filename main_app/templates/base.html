@@ -49,7 +49,7 @@
         </div>
     </nav>
 
-    <!-- ✅ Messages should be placed OUTSIDE navbar -->
+    <!-- ✅ Messages (flash alerts) -->
     {% if messages %}
       <div class="container mt-3">
         {% for message in messages %}
@@ -70,9 +70,10 @@
         {% block content %}{% endblock %}
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2025 Tailoring Shop. All rights reserved.</p>
+    <!-- ✅ Professional Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5 shadow-sm">
+        <p class="mb-1">&copy; 2025 <strong>Tailoring Shop</strong> — All Rights Reserved.</p>
+        <small class="text-secondary">Designed & Developed by <strong>Aliyu Bin Ahmad</strong></small>
     </footer>
 
     <!-- Bootstrap JS -->
@@ -84,12 +85,12 @@
         let alerts = document.querySelectorAll('.alert');
         alerts.forEach(function(alert) {
           alert.classList.add("fade");
-          alert.classList.remove("show"); // triggers fade-out
+          alert.classList.remove("show");
           setTimeout(() => {
-            alert.remove(); // fully remove after animation
-          }, 500); // match Bootstrap fade duration
+            alert.remove();
+          }, 500);
         });
-      }, 4000); // start fading after 4 seconds
+      }, 4000);
     </script>
 
 </body>
