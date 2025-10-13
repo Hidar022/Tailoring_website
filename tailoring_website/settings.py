@@ -1,11 +1,6 @@
 from pathlib import Path
 import os
 import dj_database_url  
-import django_heroku
-
-# Render / Heroku compatibility (auto static + db setup)
-# --------------------------------------------------
-django_heroku.settings(locals())
 # --------------------------------------------------
 # Base directory
 # --------------------------------------------------
