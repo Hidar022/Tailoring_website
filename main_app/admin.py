@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Product, Order, Measurement
+from .models import ContactMessage
 
 
 # =============================
@@ -43,3 +44,8 @@ class MeasurementAdmin(admin.ModelAdmin):
     list_display = ('user', 'gender', 'height', 'date_added')
     search_fields = ('user__username', 'gender')
     list_filter = ('gender',)
+
+
+
+
+admin.site.register(ContactMessage)

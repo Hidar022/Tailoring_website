@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Product, Order, Measurement
-
+from .models import ContactMessage
 
 # -----------------------
 # Home page
@@ -208,3 +208,23 @@ def my_orders(request):
         order.total_price = order.quantity * order.product.price
 
     return render(request, "my_orders.html", {"orders": orders})
+
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        subject = request.POST.get("subject")
+        message = request.POST.get("message")
+
+        ContactMessage.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message
+        )
+
+        messages.success(request, "✅ Your message has been sent successfully!")
+        return redirect("contact")
+
+    return render(request, "contact.html")

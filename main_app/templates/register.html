@@ -3,40 +3,43 @@
 {% block title %}Register - Tailoring Shop{% endblock %}
 
 {% block content %}
-<div class="container mt-5" style="max-width: 500px;">
-    <div class="card form-card shadow-lg">
-        <div class="card-header bg-dark text-white text-center">
-            <h4>Create an Account</h4>
-        </div>
-        <div class="card-body">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4">
+                <h3 class="text-center mb-4">🧵 Create Your Account</h3>
 
-            <form method="POST">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control" placeholder="Choose a username" required>
-                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" name="username" id="username" class="form-control" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
-                </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Create a password" required>
-                </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" required>
+                    </div>
 
-                <button type="submit" class="btn btn-primary w-100">Register</button>
-            </form>
-        </div>
-        <div class="card-footer text-center">
-            <small>Already have an account? <a href="{% url 'login' %}">Login</a></small>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Create Account ✅</button>
+                </form>
+
+                <p class="text-center mt-3">
+                    Already have an account? 
+                    <a href="{% url 'login' %}" class="text-decoration-none">Login</a>
+                </p>
+            </div>
         </div>
     </div>
 </div>
