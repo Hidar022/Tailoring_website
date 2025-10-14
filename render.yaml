@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: tailoring-website
+    env: python
+    buildCommand: "pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn tailoring_website.wsgi"
+    envVars:
+      - key: DEBUG
+        value: False
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tailoring_db_uvx0
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
