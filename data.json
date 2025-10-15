@@ -1,0 +1,436 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$hYrfRbXjlds09FoptxoQgP$LuYrQYC6AJpMtLGfubm6CsaOw51o0l2z74qEV7xqoJw=",
+    "last_login": "2025-10-14T14:41:37.648Z",
+    "is_superuser": true,
+    "username": "Hidar022",
+    "first_name": "",
+    "last_name": "",
+    "email": "aliyubinahmad2022@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-09-18T07:07:45.590Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$l0BX0tZMx4zMGtcMK6uL49$YkbA08Mx1OcQTxJQ5E+e+n52fGeOsDEs4/SSuSpOKyU=",
+    "last_login": "2025-09-18T07:25:10.204Z",
+    "is_superuser": false,
+    "username": "abdallah",
+    "first_name": "",
+    "last_name": "",
+    "email": "ahmerdmuazu244@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-09-18T07:24:49.377Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$TAyj7S06o7d7BEDdt8cJXX$d3yIF2yFXfUj1JZHtGUx7UIT9HIogXCUQLeQqLKdkcw=",
+    "last_login": "2025-09-18T13:43:24.472Z",
+    "is_superuser": false,
+    "username": "alamin123",
+    "first_name": "",
+    "last_name": "",
+    "email": "alaminhamisudanjanku@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-09-18T13:31:54.998Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$rzOt6u0BPbB4R3DHxMdCwV$y5mpwzBUlbmoX4Ph8KGwYBVSclNq9Jgml73+Dgsq/no=",
+    "last_login": "2025-10-09T14:46:43.208Z",
+    "is_superuser": false,
+    "username": "habibullahi1",
+    "first_name": "",
+    "last_name": "",
+    "email": "habibullahi@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-09-20T04:27:37.394Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$0DUTbohDoAG8B6jKIl1xo1$lZT5Jsh7c38BW5EglZcJFqkkifHjXhEcg6z4ITg26Ac=",
+    "last_login": "2025-09-21T10:44:11.688Z",
+    "is_superuser": false,
+    "username": "Moongirl ",
+    "first_name": "",
+    "last_name": "",
+    "email": "maryamusmanmtz@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-09-21T10:43:54.648Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Ox9LrWiNRAHyV8VAe46Hew$VW9bHR7gBl6wNX/Ddxd/J0Wg4HEj9aNbNWGKBoIG8bc=",
+    "last_login": "2025-10-11T14:23:23.514Z",
+    "is_superuser": false,
+    "username": "ibrahimash",
+    "first_name": "",
+    "last_name": "",
+    "email": "ibrahimash@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-11T14:23:12.854Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "30s9asai07arf4ckb1lhojfyfq35q7pl",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnG_1DS5wzW7nqNA8iR4qRC3B0ipYD2zcx7iQTbWtPWeUlTFhdxFqffDYEe3HaQ79Bus6S5rcuEclfkQbsc58zP6-H-HVTo9Vv7CIONpUSlrAmklSY2AyqvNARkYg-AqMkV5wsUClEVhxGDNWyj8eL9AeahODQ:1v6rkG:iWZz_FFdS5z-UCboeE3fgY7PpT_VnWYusd-ad7oDS_g",
+    "expire_date": "2025-10-09T14:35:52.090Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "994gi41vtsm0k7rl4um0j8s625vcytk1",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlne-E9JnzNYa3tNAsiW4qRC3J1ESgHtzLz3ZgG3dQpbpyXMmV2ZYpdfFjE9qR4iP7DeG0-trssc-ZHw03Y-tkyv29n-HUzYp30NyUQhPTidKDpCkh4FKK29QW3kTo1UZgAHoqDKMEg76GhsIYuQfGGfL8v0N0E:1v6rc4:5rnvjAYSz6M15RWyz_cVDzEJkeewKPBnObxiYXzTNeo",
+    "expire_date": "2025-10-09T14:27:24.238Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "f4cntk5qpqph050ojxvqxsz8huygx72b",
+  "fields": {
+    "session_data": ".eJxVjEEOgyAURO_CuiGAH4Uuu_cM5CNDtW00EV01vXsxcdHuJvPezFsE3rcx7AVrmJK4Cisuv13k4Yn5AOnB832RwzJv6xTlociTFtkvCa_b6f4djFzGuibHmhhIsB1aA9-0imsiqztPGtHBqQ7KZR-rC0NpqHrjDOWsPcTnC-wMOFA:1v0HYB:0TTp8OTyybvplOVDknmO_alDEEkuxYygE2zmLzLasKI",
+    "expire_date": "2025-10-05T10:44:11.844Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "h7vdztz1t8d8hzrj4alzdht0tab1z5hs",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnG_1DS5wzW7nqNA8iR4qRC3B0ipYD2zcx7iQTbWtPWeUlTFhdxFqffDYEe3HaQ79Bus6S5rcuEclfkQbsc58zP6-H-HVTo9Vv7CIONpUSlrAmklSY2AyqvNARkYg-AqMkV5wsUClEVhxGDNWyj8eL9AeahODQ:1v3wTq:Dqd0v8g0bzP3rPrVphaHlhSdGrQSelHs7lp73WFXgH0",
+    "expire_date": "2025-10-15T13:02:50.367Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ivu38vbr4to91y9lhbwb1tfwmvevdy65",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnG_1DS5wzW7nqNA8iR4qRC3B0ipYD2zcx7iQTbWtPWeUlTFhdxFqffDYEe3HaQ79Bus6S5rcuEclfkQbsc58zP6-H-HVTo9Vv7CIONpUSlrAmklSY2AyqvNARkYg-AqMkV5wsUClEVhxGDNWyj8eL9AeahODQ:1v4fxy:skBl_MoIVr6MN36Voudz3tkNe6ThBI9kFYm7wOA65LQ",
+    "expire_date": "2025-10-17T13:36:58.817Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lr4xvwzfmoc5bn7hc44l9kg7vsthqc6h",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnG_1DS5wzW7nqNA8iR4qRC3B0ipYD2zcx7iQTbWtPWeUlTFhdxFqffDYEe3HaQ79Bus6S5rcuEclfkQbsc58zP6-H-HVTo9Vv7CIONpUSlrAmklSY2AyqvNARkYg-AqMkV5wsUClEVhxGDNWyj8eL9AeahODQ:1v6rcK:ckAOwZjoQRZxdElVLr5H6NdHuPxNasgsMWhruK94_uY",
+    "expire_date": "2025-10-09T14:27:40.158Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ni7sup6oqjq6p2vao7e9ke20d6xnc15z",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnG_1DS5wzW7nqNA8iR4qRC3B0ipYD2zcx7iQTbWtPWeUlTFhdxFqffDYEe3HaQ79Bus6S5rcuEclfkQbsc58zP6-H-HVTo9Vv7CIONpUSlrAmklSY2AyqvNARkYg-AqMkV5wsUClEVhxGDNWyj8eL9AeahODQ:1v6rhK:SjqLoVyTZ5-JkKCDH8KKiJNw0rvvqmMLoqwU-eeFmeg",
+    "expire_date": "2025-10-09T14:32:50.707Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "o899v84zhbyux85kd17dk9fah0jhfr75",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnG_1DS5wzW7nqNA8iR4qRC3B0ipYD2zcx7iQTbWtPWeUlTFhdxFqffDYEe3HaQ79Bus6S5rcuEclfkQbsc58zP6-H-HVTo9Vv7CIONpUSlrAmklSY2AyqvNARkYg-AqMkV5wsUClEVhxGDNWyj8eL9AeahODQ:1v6rcb:C43MCThMzlifIYMFVbkc_P_EboTicT8OqgCrEnztnuw",
+    "expire_date": "2025-10-09T14:27:57.467Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "p8ij9xn4afra35j4ektc1igw8it3u8o2",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCghQGX7j0DmQ6DVA0kpV0Z765NutDtf-_9l4i4rSVunZc4J3EWWpx-twnpwXUH6Y711iS1ui7zJHdFHrTLa0v8vBzu30HBXr61ATcObrTBEoBiy4gUBg8q5-CTD95m5zkobXLS1lgFRDkjA3MiBYN4fwDFKDfM:1v8gEy:jQ9qOozpNkPqO-6iERC1FRwTJuUg2YYtKpc3hBctJRE",
+    "expire_date": "2025-10-21T14:43:04.095Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wugaminnxuljqfj9azit32lnulp6owup",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnG_1DS5wzW7nqNA8iR4qRC3B0ipYD2zcx7iQTbWtPWeUlTFhdxFqffDYEe3HaQ79Bus6S5rcuEclfkQbsc58zP6-H-HVTo9Vv7CIONpUSlrAmklSY2AyqvNARkYg-AqMkV5wsUClEVhxGDNWyj8eL9AeahODQ:1v3wTr:XIWUIABu4kr30m0QGPKY-RTWyFz7BQwoeD-_uKsPbNE",
+    "expire_date": "2025-10-15T13:02:51.316Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "x9ttewtcqc0zfpjh7byd35iebuhnanuc",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlne-E9JnzNYa3tNAsiW4qRC3J1ESgHtzLz3ZgG3dQpbpyXMmV2ZYpdfFjE9qR4iP7DeG0-trssc-ZHw03Y-tkyv29n-HUzYp30NyUQhPTidKDpCkh4FKK29QW3kTo1UZgAHoqDKMEg76GhsIYuQfGGfL8v0N0E:1v6rbj:efkH7OfUQ58JrhVk1sP-2iivyxbiQjHeNLdQ1lydttw",
+    "expire_date": "2025-10-09T14:27:03.137Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xhhtz408updovt5zir7fqf85ze9yog9z",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnG_1DS5wzW7nqNA8iR4qRC3B0ipYD2zcx7iQTbWtPWeUlTFhdxFqffDYEe3HaQ79Bus6S5rcuEclfkQbsc58zP6-H-HVTo9Vv7CIONpUSlrAmklSY2AyqvNARkYg-AqMkV5wsUClEVhxGDNWyj8eL9AeahODQ:1v6rh8:3Xej3zzSrZtELB7v22K7OGU3g3IlRchJwTgK_ToL8bw",
+    "expire_date": "2025-10-09T14:32:38.124Z"
+  }
+},
+{
+  "model": "main_app.product",
+  "pk": 1,
+  "fields": {
+    "name": "Black Suit",
+    "description": "Classic tailored black suit, perfect for formal occasions and business meetings.",
+    "price": "30000.00",
+    "image": "products/black-suit.jpg"
+  }
+},
+{
+  "model": "main_app.product",
+  "pk": 2,
+  "fields": {
+    "name": "African Gown",
+    "description": "Elegant African gown with vibrant Ankara patterns, ideal for weddings and events.",
+    "price": "25000.00",
+    "image": "products/african-gown.jpg"
+  }
+},
+{
+  "model": "main_app.product",
+  "pk": 3,
+  "fields": {
+    "name": "Wedding Dress",
+    "description": "Beautiful white wedding gown with fine lace details for a perfect bridal look.",
+    "price": "60000.00",
+    "image": "products/wedding-dress.jpg"
+  }
+},
+{
+  "model": "main_app.product",
+  "pk": 4,
+  "fields": {
+    "name": "White Shirt",
+    "description": "Premium cotton white shirt, suitable for formal and casual occasions.",
+    "price": "8000.00",
+    "image": "products/white-shirt.jpg"
+  }
+},
+{
+  "model": "main_app.product",
+  "pk": 5,
+  "fields": {
+    "name": "Blue Shirt",
+    "description": "Smart casual blue shirt with modern fit and breathable fabric.",
+    "price": "9000.00",
+    "image": "products/blue-shirt.jpg"
+  }
+},
+{
+  "model": "main_app.product",
+  "pk": 6,
+  "fields": {
+    "name": "Casual Trousers",
+    "description": "Slim-fit trousers made with durable fabric, perfect for work or outings.",
+    "price": "12000.00",
+    "image": "products/casual-trousers.jpg"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "product": 3,
+    "quantity": 1,
+    "status": "pending",
+    "order_date": "2025-09-18T09:24:46.742Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "product": 3,
+    "quantity": 1,
+    "status": "pending",
+    "order_date": "2025-09-18T09:24:47.107Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "product": 1,
+    "quantity": 3,
+    "status": "pending",
+    "order_date": "2025-09-18T13:32:37.673Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 4,
+  "fields": {
+    "user": 4,
+    "product": 3,
+    "quantity": 1,
+    "status": "pending",
+    "order_date": "2025-09-20T04:28:33.094Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "product": 1,
+    "quantity": 3,
+    "status": "pending",
+    "order_date": "2025-09-20T06:48:43.902Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "product": 2,
+    "quantity": 13,
+    "status": "pending",
+    "order_date": "2025-09-20T06:48:52.472Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "product": 2,
+    "quantity": 13,
+    "status": "pending",
+    "order_date": "2025-09-20T06:48:52.814Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "product": 1,
+    "quantity": 1,
+    "status": "pending",
+    "order_date": "2025-09-21T10:15:54.251Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 9,
+  "fields": {
+    "user": 5,
+    "product": 1,
+    "quantity": 1,
+    "status": "pending",
+    "order_date": "2025-09-21T10:45:13.503Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 10,
+  "fields": {
+    "user": 1,
+    "product": 3,
+    "quantity": 1,
+    "status": "pending",
+    "order_date": "2025-09-21T13:28:04.507Z"
+  }
+},
+{
+  "model": "main_app.order",
+  "pk": 11,
+  "fields": {
+    "user": 1,
+    "product": 2,
+    "quantity": 5,
+    "status": "pending",
+    "order_date": "2025-10-03T13:33:29.221Z"
+  }
+},
+{
+  "model": "main_app.measurement",
+  "pk": 1,
+  "fields": {
+    "user": 4,
+    "gender": "male",
+    "height": 50.0,
+    "chest": 18.0,
+    "waist": 37.0,
+    "hips": 32.0,
+    "arm_length": 15.0,
+    "bust": null,
+    "shoulder": null,
+    "hand": null,
+    "shirt_length": null,
+    "trouser_length": null,
+    "neck_size": null,
+    "shirt_size": null,
+    "date_added": "2025-09-20T05:00:24.568Z"
+  }
+},
+{
+  "model": "main_app.measurement",
+  "pk": 2,
+  "fields": {
+    "user": 5,
+    "gender": "male",
+    "height": 58.0,
+    "chest": 38.0,
+    "waist": 34.0,
+    "hips": 37.0,
+    "arm_length": 13.0,
+    "bust": null,
+    "shoulder": null,
+    "hand": null,
+    "shirt_length": null,
+    "trouser_length": null,
+    "neck_size": null,
+    "shirt_size": null,
+    "date_added": "2025-09-21T10:44:55.548Z"
+  }
+},
+{
+  "model": "main_app.contactmessage",
+  "pk": 1,
+  "fields": {
+    "name": "ibrahimash",
+    "email": "ibrahimash@gmail.com",
+    "subject": "Great Experience with Your Tailoring Website",
+    "message": 
