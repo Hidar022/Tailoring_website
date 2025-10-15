@@ -15,4 +15,4 @@ services:
       - key: DEBUG
         value: False
     postDeployCommand: |
-      python manage.py loaddata data.json || echo "Fixture already loaded"
+      python manage.py loaddata data.json || echo "Data already loaded"
