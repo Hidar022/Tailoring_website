@@ -107,6 +107,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+if not DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / "staticfiles/media"]
+
 # --------------------------------------------------
 # Authentication redirects
 # --------------------------------------------------
@@ -125,3 +128,5 @@ SESSION_SAVE_EVERY_REQUEST = True
 # Default primary key field type
 # --------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_DIRS = []
