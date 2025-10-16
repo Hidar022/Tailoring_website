@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: hidar-tailoring-shop
+    name: tailoring_website
     env: python
     buildCommand: "pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput"
-    startCommand: "gunicorn hidar-tailoring-shop.wsgi:application"
+    startCommand: "gunicorn tailoring_website.wsgi:application"
     postDeployCommand: |
       python manage.py loaddata data.json || echo "Data already loaded"
 
