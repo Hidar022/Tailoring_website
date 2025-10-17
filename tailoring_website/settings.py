@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app',  # ✅ main app
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
