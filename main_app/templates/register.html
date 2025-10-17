@@ -1,110 +1,110 @@
 {% extends 'base.html' %}
-{% block title %}Register - Bin Tailoring{% endblock %}
 
-{% block content %}
+{% block title %}Register - Bin Tailoring Shop{% endblock %}
+
+{% block full_content %}
 <style>
-/* ==============================
-   REGISTER PAGE – Premium Dark Style
-============================== */
+/* ===== Register Page Styles ===== */
 body {
-  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-  font-family: "Poppins", sans-serif;
-  color: #fff;
+  background: linear-gradient(135deg, #f8f6f3, #fffefc) !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+.register-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.register-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(191, 161, 74, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 0 25px rgba(191, 161, 74, 0.15);
+
+.register-box {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   padding: 40px 35px;
-  width: 450px;
-  animation: fadeInUp 1s ease both;
-}
-.register-card h3 {
-  color: #bfa14a;
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: 25px;
-  letter-spacing: 0.5px;
-}
-.form-control {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border-radius: 10px;
-  padding: 12px;
-  font-size: 15px;
-  transition: all 0.3s ease;
-}
-.form-control:focus {
-  border-color: #bfa14a;
-  box-shadow: 0 0 10px rgba(191, 161, 74, 0.4);
-  background: rgba(255, 255, 255, 0.1);
-}
-.btn-register {
-  background: #bfa14a;
-  color: #000;
-  font-weight: 600;
-  border: none;
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-.btn-register:hover {
-  background: #d1b55a;
-  box-shadow: 0 0 20px rgba(191, 161, 74, 0.4);
-  transform: translateY(-2px);
-}
-.register-footer {
-  text-align: center;
-  margin-top: 15px;
-  color: #ccc;
-}
-.register-footer a {
-  color: #bfa14a;
-  text-decoration: none;
-}
-.register-footer a:hover {
-  color: #d1b55a;
+  max-width: 460px;
+  animation: fadeInUp 1.1s ease;
 }
 
-/* Animation */
+.register-box h2 {
+  text-align: center;
+  font-weight: 700;
+  color: #b49147;
+  margin-bottom: 25px;
+}
+
+.form-control {
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.btn-register {
+  background: linear-gradient(135deg, #b49147, #8c6c24);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-register:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(180,145,71,0.4);
+}
+
+a.text-link {
+  color: #b49147;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a.text-link:hover {
+  color: #8c6c24;
+  text-decoration: underline;
+}
+
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+  from {opacity:0; transform: translateY(40px);}
+  to {opacity:1; transform: translateY(0);}
 }
 </style>
 
-<div class="register-card">
-  <h3>Create Your Account ✨</h3>
-  <form method="POST">
-    {% csrf_token %}
-    <div class="mb-3">
-      <label class="form-label">Username</label>
-      <input type="text" name="username" class="form-control" placeholder="Choose username" required>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Email</label>
-      <input type="email" name="email" class="form-control" placeholder="Enter email" required>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Password</label>
-      <input type="password" name="password1" class="form-control" placeholder="Create password" required>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Confirm Password</label>
-      <input type="password" name="password2" class="form-control" placeholder="Re-enter password" required>
-    </div>
-    <button type="submit" class="btn btn-login w-100">Register</button>
-  </form>
-  <p class="text-center mt-3">
-  Already have an account? <a href="{% url 'login' %}" style="color:#b49147;">Login</a>
-</p>
+<div class="register-page">
+  <div class="register-box animate__animated animate__fadeInUp">
+    <h2>Create Your Account ✨</h2>
+    <form method="POST">
+      {% csrf_token %}
+      
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" name="username" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password1" class="form-label">Password</label>
+        <input type="password" id="password1" name="password1" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password2" class="form-label">Confirm Password</label>
+        <input type="password" id="password2" name="password2" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn btn-register w-100">Register</button>
+    </form>
+
+    <p class="text-center mt-3">
+      Already have an account? <a href="{% url 'login' %}" class="text-link">Login</a>
+    </p>
+  </div>
 </div>
 {% endblock %}

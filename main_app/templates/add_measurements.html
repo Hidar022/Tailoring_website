@@ -1,18 +1,110 @@
 {% extends 'base.html' %}
-{% block title %}Add Measurements{% endblock %}
+{% block title %}Add Measurements - Bin Tailoring Shop{% endblock %}
 
 {% block content %}
-<section class="hero">
-  <h2 class="fw-bold">➕ Add Your Measurements</h2>
-  <p>Save your body details for perfect tailoring</p>
-</section>
+<style>
+/* =============================
+   ADD MEASUREMENT PAGE STYLES
+============================= */
+.page-bg {
+  background: linear-gradient(135deg, #fefefe, #f7f6f4);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 15px;
+  animation: fadeInBg 1s ease both;
+}
 
-<div class="container py-5 fade-in">
-  <div class="card mx-auto" style="max-width: 600px;">
+@keyframes fadeInBg {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.form-wrapper {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 650px;
+  width: 100%;
+  padding: 40px 35px;
+  animation: fadeInUp 1s ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-wrapper h3 {
+  font-weight: 700;
+  color: #1f1f1f;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+label {
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #b49147;
+  box-shadow: 0 0 8px rgba(180,145,71,0.4);
+}
+
+.btn-primary {
+  background-color: #b49147;
+  border: none;
+  border-radius: 50px;
+  padding: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #9f7e38;
+  transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+  border-radius: 50px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  color: #b49147;
+}
+
+/* Smooth fade animation for field sections */
+.fade-section {
+  animation: fadeInSmooth 0.6s ease both;
+}
+
+@keyframes fadeInSmooth {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div class="page-bg">
+  <div class="form-wrapper">
+    <h3>Add Your Measurements ✍️</h3>
     <form method="POST">
       {% csrf_token %}
+
+      <!-- Gender Selection -->
       <div class="mb-3">
-        <label class="form-label">Gender</label>
+        <label for="gender" class="form-label">Select Gender</label>
         <select class="form-control" id="gender" name="gender" required>
           <option value="">-- Select --</option>
           <option value="male">Men's</option>
@@ -20,33 +112,56 @@
         </select>
       </div>
 
-      <div id="fields-area"></div>
+      <!-- Female Fields -->
+      <div id="female-fields" class="d-none fade-section">
+        <p class="section-title">👩 Women's Measurements</p>
+        <div class="row g-3">
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="height" placeholder="Height (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="chest" placeholder="Chest (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="waist" placeholder="Waist (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="hips" placeholder="Hips (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="arm_length" placeholder="Arm Length (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="bust" placeholder="Bust (cm)"></div>
+        </div>
+      </div>
 
-      <button type="submit" class="btn btn-primary w-100 mt-3">Save Measurement ✅</button>
+      <!-- Male Fields -->
+      <div id="male-fields" class="d-none fade-section">
+        <p class="section-title">👨 Men's Measurements</p>
+        <div class="row g-3">
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="arm_length" placeholder="Arm Length (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="shoulder" placeholder="Shoulder (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="hand" placeholder="Hand (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="shirt_length" placeholder="Shirt Length (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="trouser_length" placeholder="Trouser Length (cm)"></div>
+          <div class="col-md-6"><input type="number" step="0.1" class="form-control" name="neck_size" placeholder="Neck Size (cm)"></div>
+          <div class="col-md-6"><input type="text" class="form-control" name="shirt_size" placeholder="Shirt Size"></div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 mt-4">Save Measurements ✅</button>
+      <div class="text-center mt-3">
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary">⬅ Back to Home</a>
+      </div>
     </form>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function(){
-  const gender = document.getElementById('gender');
-  const area = document.getElementById('fields-area');
-  gender.addEventListener('change', function(){
-    if (this.value === 'female') {
-      area.innerHTML = `
-        <div class='mb-3'><label>Height</label><input type='number' name='height' class='form-control'></div>
-        <div class='mb-3'><label>Chest</label><input type='number' name='chest' class='form-control'></div>
-        <div class='mb-3'><label>Waist</label><input type='number' name='waist' class='form-control'></div>
-        <div class='mb-3'><label>Hips</label><input type='number' name='hips' class='form-control'></div>`;
-    } else if (this.value === 'male') {
-      area.innerHTML = `
-        <div class='mb-3'><label>Arm Length</label><input type='number' name='arm_length' class='form-control'></div>
-        <div class='mb-3'><label>Shoulder</label><input type='number' name='shoulder' class='form-control'></div>
-        <div class='mb-3'><label>Neck Size</label><input type='number' name='neck_size' class='form-control'></div>`;
-    } else {
-      area.innerHTML = '';
-    }
-  });
+const genderSelect = document.getElementById("gender");
+const femaleFields = document.getElementById("female-fields");
+const maleFields = document.getElementById("male-fields");
+
+genderSelect.addEventListener("change", function() {
+  femaleFields.classList.add("d-none");
+  maleFields.classList.add("d-none");
+  if (this.value === "female") {
+    femaleFields.classList.remove("d-none");
+    femaleFields.classList.add("fade-section");
+  } else if (this.value === "male") {
+    maleFields.classList.remove("d-none");
+    maleFields.classList.add("fade-section");
+  }
 });
 </script>
 {% endblock %}

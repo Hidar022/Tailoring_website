@@ -1,49 +1,225 @@
 {% extends 'base.html' %}
-{% block title %}My Measurements{% endblock %}
+{% block title %}My Measurements - Bin Tailoring Shop{% endblock %}
 
 {% block content %}
-<section class="hero">
-  <h2 class="fw-bold">📐 My Measurements</h2>
-  <p class="text-light">All your saved body measurements in one place</p>
-</section>
+<style>
+/* ===========================
+   Page Styling
+=========================== */
+.measurement-bg {
+  background: linear-gradient(135deg, #fefefe, #faf9f6);
+  min-height: 100vh;
+  padding: 60px 0;
+}
 
-<div class="container py-5 fade-in">
-  {% if female_measurements or male_measurements %}
-    <div class="table-responsive mb-4">
-      <table class="table table-hover text-center align-middle">
-        <thead>
-          <tr>
-            <th>Gender</th>
-            <th>Date</th>
-            <th>Details</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for m in female_measurements %}
-            <tr>
-              <td>👩 Female</td>
-              <td>{{ m.date_added|date:"M d, Y" }}</td>
-              <td>Height: {{ m.height }} | Chest: {{ m.chest }} | Waist: {{ m.waist }}</td>
-              <td><a href="{% url 'edit_measurement' m.id %}" class="btn btn-outline-light btn-sm">Edit</a></td>
-            </tr>
-          {% endfor %}
-          {% for m in male_measurements %}
-            <tr>
-              <td>👨 Male</td>
-              <td>{{ m.date_added|date:"M d, Y" }}</td>
-              <td>Arm: {{ m.arm_length }} | Shoulder: {{ m.shoulder }} | Neck: {{ m.neck_size }}</td>
-              <td><a href="{% url 'edit_measurement' m.id %}" class="btn btn-outline-light btn-sm">Edit</a></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+.measurement-title {
+  text-align: center;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin-bottom: 40px;
+  animation: fadeInDown 0.8s ease both;
+}
+
+/* ===========================
+   Tables
+=========================== */
+.table-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease both;
+}
+
+.table-card:hover {
+  box-shadow: 0 12px 30px rgba(180,145,71,0.2);
+  transform: translateY(-3px);
+}
+
+.table th {
+  background: #1f1f1f !important;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.table td {
+  vertical-align: middle;
+  color: #333;
+}
+
+.badge-male {
+  background-color: #1f1f1f;
+  color: #f8f9fa;
+  padding: 6px 10px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.badge-female {
+  background-color: #b49147;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+.btn-primary {
+  background-color: #b49147;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #9f7e38;
+  transform: translateY(-2px);
+}
+
+.btn-warning {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* ===========================
+   Animations
+=========================== */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Highlight Glow */
+.highlight-glow {
+  box-shadow: 0 0 25px rgba(180,145,71,0.7) !important;
+  transition: box-shadow 0.5s ease-in-out;
+  animation: glowPulse 1.5s ease-in-out 2;
+  border-radius: 8px;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+  50% { box-shadow: 0 0 25px rgba(180,145,71,0.9); }
+  100% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+}
+</style>
+
+<div class="measurement-bg">
+  <div class="container">
+    <h2 class="measurement-title">📏 My Measurements</h2>
+
+    <!-- ✅ Women's Measurements -->
+    <div class="table-card p-4 mb-5">
+      <h4 class="text-gold mb-3"><span class="badge-female">👩 Women's Measurements</span></h4>
+      {% if female_measurements %}
+        <div class="table-responsive">
+          <table class="table text-center align-middle">
+            <thead>
+              <tr>
+                <th>Date Added</th>
+                <th>Height</th>
+                <th>Chest</th>
+                <th>Waist</th>
+                <th>Hips</th>
+                <th>Arm</th>
+                <th>Bust</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for m in female_measurements %}
+                <tr>
+                  <td>{{ m.date_added|date:"M d, Y" }}</td>
+                  <td>{{ m.height }}</td>
+                  <td>{{ m.chest }}</td>
+                  <td>{{ m.waist }}</td>
+                  <td>{{ m.hips }}</td>
+                  <td>{{ m.arm_length }}</td>
+                  <td>{{ m.bust }}</td>
+                  <td><a href="{% url 'edit_measurement' m.id %}" class="btn btn-sm btn-warning">✏️ Edit</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="alert alert-warning mt-3">⚠️ No measurements found for women.</div>
+      {% endif %}
     </div>
-  {% else %}
-    <div class="text-center text-muted">⚠️ No measurements saved yet.</div>
-  {% endif %}
-  <div class="text-center mt-4">
-    <a href="{% url 'add_measurements' %}" class="btn btn-primary btn-lg">➕ Add Measurement</a>
+
+    <!-- ✅ Men's Measurements -->
+    <div class="table-card p-4 mb-4">
+      <h4 class="text-dark mb-3"><span class="badge-male">👨 Men's Measurements</span></h4>
+      {% if male_measurements %}
+        <div class="table-responsive">
+          <table class="table text-center align-middle">
+            <thead>
+              <tr>
+                <th>Date Added</th>
+                <th>Arm</th>
+                <th>Shoulder</th>
+                <th>Hand</th>
+                <th>Shirt</th>
+                <th>Trouser</th>
+                <th>Neck</th>
+                <th>Size</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for m in male_measurements %}
+                <tr>
+                  <td>{{ m.date_added|date:"M d, Y" }}</td>
+                  <td>{{ m.arm_length }}</td>
+                  <td>{{ m.shoulder }}</td>
+                  <td>{{ m.hand }}</td>
+                  <td>{{ m.shirt_length }}</td>
+                  <td>{{ m.trouser_length }}</td>
+                  <td>{{ m.neck_size }}</td>
+                  <td>{{ m.shirt_size }}</td>
+                  <td><a href="{% url 'edit_measurement' m.id %}" class="btn btn-sm btn-warning">✏️ Edit</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="alert alert-warning mt-3">⚠️ No measurements found for men.</div>
+      {% endif %}
+    </div>
+
+    <!-- Add Measurement -->
+    <div class="text-center mt-5">
+      <a href="{% url 'add_measurements' %}" class="btn btn-primary btn-lg shadow">
+        ➕ Add New Measurement
+      </a>
+    </div>
   </div>
 </div>
+
+<script>
+  const showGender = "{{ show_gender }}";
+
+  function highlightSection(selector) {
+    const section = document.querySelector(selector);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "center" });
+      section.classList.add("highlight-glow");
+      setTimeout(() => section.classList.remove("highlight-glow"), 2000);
+    }
+  }
+
+  if (showGender === "male") highlightSection(".badge-male");
+  if (showGender === "female") highlightSection(".badge-female");
+</script>
 {% endblock %}
