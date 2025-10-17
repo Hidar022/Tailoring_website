@@ -1,127 +1,144 @@
 /* ==============================
-   Navbar Styles
+   BIN TAILORING — ELEGANT DARK THEME
 ============================== */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0e0e0e;
+  color: #eee;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+.navbar-brand {
+  color: gold !important;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
 .navbar-dark .navbar-nav .nav-link {
-    transition: all 0.3s ease-in-out;
-    border-radius: 6px;
-    padding-left: 12px;
-    padding-right: 12px;
+  color: #ccc !important;
+  margin: 0 10px;
+  transition: all 0.3s ease;
 }
 .navbar-dark .navbar-nav .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-.navbar-dark .navbar-nav .nav-link.active {
-    background-color: #0d6efd;
-    color: #fff !important;
+  color: gold !important;
+  transform: translateY(-2px);
 }
 
-/* ==============================
-   Footer Styles
-============================== */
-footer {
-    background: linear-gradient(to right, #212529, #343a40);
-    color: #ccc;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-}
-footer p:hover {
-    color: #fff;
-    text-shadow: 0px 0px 8px rgba(13, 110, 253, 0.7);
-    transform: scale(1.02);
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  padding: 100px 0;
+  text-align: center;
+  color: gold;
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* ==============================
-   Product Cards
-============================== */
-.product-card {
-    transition: all 0.3s ease-in-out;
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
+/* ===== CARDS ===== */
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+  transition: all 0.4s ease;
 }
-.product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-}
-.product-card img {
-    height: 220px;
-    object-fit: cover;
-    border-bottom: 1px solid #eee;
-    transition: transform 0.4s ease; /* smooth zoom */
-}
-.product-card img:hover {
-    transform: scale(1.1); /* zoom on hover */
-}
-.product-card .btn:hover {
-    transform: scale(1.05);
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
 }
 
-/* ==============================
-   Buttons
-============================== */
+/* ===== BUTTONS ===== */
 .btn {
-    transition: all 0.3s ease-in-out;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
 }
-.btn:hover {
-    transform: scale(1.03);
+.btn-primary {
+  background: gold;
+  border: none;
+  color: #000;
 }
-
-/* ==============================
-   General Form Styling
-============================== */
-.form-card {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease-in-out;
-    background: #ffffff;
+.btn-primary:hover {
+  background: #ffdf00;
+  box-shadow: 0 0 20px gold;
 }
-.form-card:hover {
-    transform: translateY(-5px);
+.btn-outline-light {
+  border: 1px solid gold;
+  color: gold;
 }
-.form-card .card-header {
-    background: linear-gradient(135deg, #0d6efd, #6610f2);
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.form-card .form-control {
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 15px;
-    border: 1px solid #ddd;
-    transition: all 0.3s ease-in-out;
-}
-.form-card .form-control:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 8px rgba(13, 110, 253, 0.2);
-}
-.form-card button {
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
-}
-.form-card button:hover {
-    background-color: #0b5ed7;
-    transform: scale(1.05);
+.btn-outline-light:hover {
+  background: gold;
+  color: #000;
 }
 
-#welcomeAlert {
-  opacity: 0;
-  transform: translateY(-10px);
-  animation: fadeInDown 0.8s ease forwards;
+/* ===== TABLES ===== */
+.table {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.table th {
+  background: rgba(255, 215, 0, 0.1);
+  color: gold;
+  text-transform: uppercase;
+}
+.table td {
+  vertical-align: middle;
+}
+.table-hover tbody tr:hover {
+  background: rgba(255, 215, 0, 0.05);
 }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ===== FORMS ===== */
+.form-control {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px;
+}
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: gold;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  color: #fff;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #000;
+  color: #aaa;
+  text-align: center;
+  padding: 20px;
+  margin-top: 60px;
+  border-top: 1px solid rgba(255, 215, 0, 0.1);
+}
+footer p {
+  margin: 0;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.8s ease forwards; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .card { padding: 15px; }
+  .navbar-brand { font-size: 1.3rem; }
 }

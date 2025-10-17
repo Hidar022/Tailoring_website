@@ -1,27 +1,72 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% block title %}About Us - Bin Tailoring Shop{% endblock %}
+ {% block content %} 
+ 
+ <!-- Hero Header -->
+   <section class="text-white py-5 text-center"
+    style="background: linear-gradient(135deg, #111, #333);">
+     <div class="container py-4">
+       <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">About Bin Tailoring</h1> 
+       <p class="lead text-light animate__animated animate__fadeInUp"> Crafting confidence through elegant, perfectly tailored designs. </p> 
+      </div>
+     </section>
 
-{% block title %}About Us - Tailoring Shop{% endblock %}
 
-{% block content %}
-<div class="container">
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">About Us</li>
-        </ol>
-    </nav>
-
-    <h2 class="text-center mb-4">👕 About Us</h2>
-    <div class="card shadow-sm p-4">
-        <p>
-            Welcome to <strong>Tailoring Shop</strong> — your one-stop solution for custom-made clothing.  
-            We specialize in delivering perfectly tailored outfits that suit your unique style and measurements.
-        </p>
-        <p>
-            Our mission is simple: <em>to provide affordable, high-quality, and fast tailoring services</em>.  
-            Whether it’s casual wear, corporate attire, or traditional outfits, we’ve got you covered.
-        </p>
+<!-- About Section -->
+<div class="container my-5">
+  <div class="row align-items-center">
+    <div class="col-md-6 mb-4 mb-md-0">
+      <img 
+        src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80" 
+        alt="Tailoring studio" 
+        class="img-fluid rounded-4 shadow-lg animate__animated animate__fadeInLeft">
     </div>
+    <div class="col-md-6 animate__animated animate__fadeInRight">
+      <h2 class="fw-bold mb-3 text-uppercase text-primary">Our Story</h2>
+      <p class="text-muted fs-5">
+        At <strong>Bin Tailoring Shop</strong>, we believe that every outfit tells a story — 
+        your story. Our mission is to bring your dream look to life through precision, 
+        creativity, and craftsmanship.
+      </p>
+      <p class="text-muted fs-5">
+        Since our founding, we’ve dressed clients for every occasion — from grand ceremonies 
+        to everyday wear — combining modern trends with traditional elegance.
+      </p>
+      <a href="{% url 'contact' %}" class="btn btn-dark rounded-pill px-4 mt-3 shadow-sm">Contact Us</a>
+    </div>
+  </div>
 </div>
+
+<section class="bg-light py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold text-uppercase mb-4 text-primary">Our Mission & Vision</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="p-4 bg-white rounded-4 shadow-sm h-100 animate__animated animate__fadeInUp">
+          <h4 class="fw-bold text-dark">Our Mission</h4>
+          <p class="text-muted">
+            To empower confidence and individuality through top-quality tailoring and 
+            customer-first craftsmanship.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-4 bg-white rounded-4 shadow-sm h-100 animate__animated animate__fadeInUp">
+          <h4 class="fw-bold text-dark">Our Vision</h4>
+          <p class="text-muted">
+            To become Africa’s most trusted and creative tailoring brand — 
+            merging technology, fashion, and culture into timeless designs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-dark text-white py-4 text-center mt-5">
+  <p class="mb-0">&copy; {{ now|date:"Y" }} <strong>Bin Tailoring Shop</strong>. 
+    Designed with ❤️ — Tailored for Excellence.
+  </p>
+</footer>
+
 {% endblock %}

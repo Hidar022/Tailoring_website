@@ -1,41 +1,97 @@
 {% extends 'base.html' %}
 
-{% block title %}Contact Us - Tailoring Shop{% endblock %}
+{% block title %}Contact Us - Bin Tailoring Shop{% endblock %}
 
 {% block content %}
-<div class="container">
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
-        </ol>
-    </nav>
+<!-- Hero Section -->
+<section class="text-white text-center py-5" 
+         style="background: linear-gradient(135deg, #111, #444);">
+  <div class="container py-4">
+    <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">
+      Get in Touch
+    </h1>
+    <p class="lead text-light animate__animated animate__fadeInUp">
+      Have a question, need a custom design, or want to visit our studio? We’d love to hear from you.
+    </p>
+  </div>
+</section>
 
-    <h2 class="text-center mb-4">📞 Contact Us</h2>
-    <div class="card shadow-sm p-4">
-        <p><strong>Email:</strong> aliyubinahmad2022@gmail.com</p>
-        <p><strong>Phone:</strong> +234 903 804 7335</p>
-        <p><strong>Address:</strong> Kano Street, Katsina, Nigeria</p>
+<!-- Contact Form Section -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg border-0 bg-transparent" 
+           style="backdrop-filter: blur(15px); background-color: rgba(255, 255, 255, 0.15); border-radius: 20px;">
+        <div class="card-body p-5 text-white">
+          <h3 class="text-center mb-4 fw-bold text-uppercase">Send Us a Message</h3>
 
-        <hr>
-        <h5>Send Us a Message ✉️</h5>
-        <form method="post">
+          <form method="POST">
             {% csrf_token %}
             <div class="mb-3">
-                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+              <label class="form-label text-light fw-semibold">Full Name</label>
+              <input type="text" name="name" class="form-control rounded-pill p-3" placeholder="Your Name" required>
             </div>
+
             <div class="mb-3">
-                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+              <label class="form-label text-light fw-semibold">Email Address</label>
+              <input type="email" name="email" class="form-control rounded-pill p-3" placeholder="your@email.com" required>
             </div>
+
             <div class="mb-3">
-                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+              <label class="form-label text-light fw-semibold">Subject</label>
+              <input type="text" name="subject" class="form-control rounded-pill p-3" placeholder="What’s this about?" required>
             </div>
+
             <div class="mb-3">
-                <textarea name="message" class="form-control" placeholder="Your Message" rows="4" required></textarea>
+              <label class="form-label text-light fw-semibold">Message</label>
+              <textarea name="message" rows="4" class="form-control rounded-4 p-3" placeholder="Write your message..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Send Message</button>
-        </form>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-light px-5 py-2 rounded-pill fw-bold text-dark">
+                <i class="bi bi-send-fill me-2"></i>Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
+<!-- Contact Info Section -->
+<section class="bg-light py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold text-uppercase mb-4">Our Contact Information</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="p-4 bg-white rounded-4 shadow-sm h-100">
+          <i class="bi bi-geo-alt-fill text-danger display-5 mb-3"></i>
+          <h5 class="fw-bold">Visit Us</h5>
+          <p class="text-muted">kano street, Katsina, Nigeria</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 bg-white rounded-4 shadow-sm h-100">
+          <i class="bi bi-envelope-fill text-primary display-5 mb-3"></i>
+          <h5 class="fw-bold">Email</h5>
+          <p class="text-muted">bintailoringshop@gmail.com</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 bg-white rounded-4 shadow-sm h-100">
+          <i class="bi bi-telephone-fill text-success display-5 mb-3"></i>
+          <h5 class="fw-bold">Call Us</h5>
+          <p class="text-muted">+234 903 804 7335</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-4">
+  <p class="mb-0">&copy; {{ now|date:"Y" }} <strong>Bin Tailoring Shop</strong> — Crafted with Precision & Passion.</p>
+</footer>
+
 {% endblock %}

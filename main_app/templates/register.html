@@ -1,46 +1,110 @@
 {% extends 'base.html' %}
-
-{% block title %}Register - Tailoring Shop{% endblock %}
+{% block title %}Register - Bin Tailoring{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm p-4">
-                <h3 class="text-center mb-4">🧵 Create Your Account</h3>
+<style>
+/* ==============================
+   REGISTER PAGE – Premium Dark Style
+============================== */
+body {
+  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(191, 161, 74, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(191, 161, 74, 0.15);
+  padding: 40px 35px;
+  width: 450px;
+  animation: fadeInUp 1s ease both;
+}
+.register-card h3 {
+  color: #bfa14a;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+.form-control {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+.form-control:focus {
+  border-color: #bfa14a;
+  box-shadow: 0 0 10px rgba(191, 161, 74, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+}
+.btn-register {
+  background: #bfa14a;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.btn-register:hover {
+  background: #d1b55a;
+  box-shadow: 0 0 20px rgba(191, 161, 74, 0.4);
+  transform: translateY(-2px);
+}
+.register-footer {
+  text-align: center;
+  margin-top: 15px;
+  color: #ccc;
+}
+.register-footer a {
+  color: #bfa14a;
+  text-decoration: none;
+}
+.register-footer a:hover {
+  color: #d1b55a;
+}
 
-                <form method="POST">
-                    {% csrf_token %}
-                    
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" name="username" id="username" class="form-control" required>
-                    </div>
+/* Animation */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+</style>
 
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="email" name="email" id="email" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" id="password" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="confirm_password" class="form-label">Confirm Password</label>
-                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100">Create Account ✅</button>
-                </form>
-
-                <p class="text-center mt-3">
-                    Already have an account? 
-                    <a href="{% url 'login' %}" class="text-decoration-none">Login</a>
-                </p>
-            </div>
-        </div>
+<div class="register-card">
+  <h3>Create Your Account ✨</h3>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input type="text" name="username" class="form-control" placeholder="Choose username" required>
     </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" placeholder="Enter email" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" name="password1" class="form-control" placeholder="Create password" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Confirm Password</label>
+      <input type="password" name="password2" class="form-control" placeholder="Re-enter password" required>
+    </div>
+    <button type="submit" class="btn btn-login w-100">Register</button>
+  </form>
+  <p class="text-center mt-3">
+  Already have an account? <a href="{% url 'login' %}" style="color:#b49147;">Login</a>
+</p>
 </div>
 {% endblock %}

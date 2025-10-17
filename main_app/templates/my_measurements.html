@@ -1,144 +1,49 @@
 {% extends 'base.html' %}
-
 {% block title %}My Measurements{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="text-center mb-4">📏 My Measurements</h2>
+<section class="hero">
+  <h2 class="fw-bold">📐 My Measurements</h2>
+  <p class="text-light">All your saved body measurements in one place</p>
+</section>
 
-    <!-- ✅ Women's Measurements -->
-    <h4 class="mt-4 text-danger">👩 Women's Measurements</h4>
-    {% if female_measurements %}
-        <div class="table-responsive mb-4">
-            <table class="table table-bordered text-center align-middle shadow-sm">
-                <thead class="table-danger">
-                    <tr>
-                        <th>👩</th>
-                        <th>Date Added</th>
-                        <th>Height (cm)</th>
-                        <th>Chest (cm)</th>
-                        <th>Waist (cm)</th>
-                        <th>Hips (cm)</th>
-                        <th>Arm Length (cm)</th>
-                        <th>Bust (cm)</th>
-                        <th>Edit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for m in female_measurements %}
-                        <tr>
-                            <td><span class="badge bg-danger">👩</span></td>
-                            <td>{{ m.date_added|date:"M d, Y" }}</td>
-                            <td>{{ m.height }}</td>
-                            <td>{{ m.chest }}</td>
-                            <td>{{ m.waist }}</td>
-                            <td>{{ m.hips }}</td>
-                            <td>{{ m.arm_length }}</td>
-                            <td>{{ m.bust }}</td>
-                            <td>
-                                <a href="{% url 'edit_measurement' m.id %}" class="btn btn-sm btn-warning">✏️ Edit</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="alert alert-warning">⚠️ No measurements found for women.</div>
-    {% endif %}
-
-    <!-- ✅ Men's Measurements -->
-    <h4 class="mt-4 text-primary">👨 Men's Measurements</h4>
-    {% if male_measurements %}
-        <div class="table-responsive mb-4">
-            <table class="table table-bordered text-center align-middle shadow-sm">
-                <thead class="table-primary">
-                    <tr>
-                        <th>👨</th>
-                        <th>Date Added</th>
-                        <th>Arm Length (cm)</th>
-                        <th>Shoulder (cm)</th>
-                        <th>Hand (cm)</th>
-                        <th>Shirt Length (cm)</th>
-                        <th>Trouser Length (cm)</th>
-                        <th>Neck Size (cm)</th>
-                        <th>Shirt Size</th>
-                        <th>Edit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for m in male_measurements %}
-                        <tr>
-                            <td><span class="badge bg-primary">👨</span></td>
-                            <td>{{ m.date_added|date:"M d, Y" }}</td>
-                            <td>{{ m.arm_length }}</td>
-                            <td>{{ m.shoulder }}</td>
-                            <td>{{ m.hand }}</td>
-                            <td>{{ m.shirt_length }}</td>
-                            <td>{{ m.trouser_length }}</td>
-                            <td>{{ m.neck_size }}</td>
-                            <td>{{ m.shirt_size }}</td>
-                            <td>
-                                <a href="{% url 'edit_measurement' m.id %}" class="btn btn-sm btn-warning">✏️ Edit</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="alert alert-warning">⚠️ No measurements found for men.</div>
-    {% endif %}
-
-    <!-- Add New Measurement Button -->
-    <div class="text-center mt-4">
-        <a href="{% url 'add_measurements' %}" class="btn btn-primary btn-lg">
-            ➕ Add New Measurement
-        </a>
+<div class="container py-5 fade-in">
+  {% if female_measurements or male_measurements %}
+    <div class="table-responsive mb-4">
+      <table class="table table-hover text-center align-middle">
+        <thead>
+          <tr>
+            <th>Gender</th>
+            <th>Date</th>
+            <th>Details</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in female_measurements %}
+            <tr>
+              <td>👩 Female</td>
+              <td>{{ m.date_added|date:"M d, Y" }}</td>
+              <td>Height: {{ m.height }} | Chest: {{ m.chest }} | Waist: {{ m.waist }}</td>
+              <td><a href="{% url 'edit_measurement' m.id %}" class="btn btn-outline-light btn-sm">Edit</a></td>
+            </tr>
+          {% endfor %}
+          {% for m in male_measurements %}
+            <tr>
+              <td>👨 Male</td>
+              <td>{{ m.date_added|date:"M d, Y" }}</td>
+              <td>Arm: {{ m.arm_length }} | Shoulder: {{ m.shoulder }} | Neck: {{ m.neck_size }}</td>
+              <td><a href="{% url 'edit_measurement' m.id %}" class="btn btn-outline-light btn-sm">Edit</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-
+  {% else %}
+    <div class="text-center text-muted">⚠️ No measurements saved yet.</div>
+  {% endif %}
+  <div class="text-center mt-4">
+    <a href="{% url 'add_measurements' %}" class="btn btn-primary btn-lg">➕ Add Measurement</a>
+  </div>
 </div>
-<script>
-    const showGender = "{{ show_gender }}";
-
-    // Function to add highlight animation
-    function highlightSection(selector, colorClass) {
-        const section = document.querySelector(selector);
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth", block: "center" });
-
-            // Add highlight class
-            section.classList.add(colorClass, "highlight-glow");
-
-            // Remove after animation ends
-            setTimeout(() => {
-                section.classList.remove(colorClass, "highlight-glow");
-            }, 2000);
-        }
-    }
-
-    // Trigger based on gender
-    if (showGender === "male") {
-        highlightSection(".table-primary", "border-primary");
-    } else if (showGender === "female") {
-        highlightSection(".table-danger", "border-danger");
-    }
-</script>
-
-<style>
-/* ✨ Smooth glowing highlight effect */
-.highlight-glow {
-    box-shadow: 0 0 25px rgba(0, 123, 255, 0.7) !important;
-    transition: box-shadow 0.5s ease-in-out;
-    animation: glowPulse 1.5s ease-in-out 2;
-    border-radius: 8px;
-}
-
-@keyframes glowPulse {
-    0% { box-shadow: 0 0 0px rgba(0,0,0,0); }
-    50% { box-shadow: 0 0 20px rgba(255,193,7,0.8); }
-    100% { box-shadow: 0 0 0px rgba(0,0,0,0); }
-}
-</style>
-
 {% endblock %}

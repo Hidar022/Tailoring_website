@@ -1,103 +1,39 @@
 {% extends 'base.html' %}
-
 {% block title %}Edit Measurement{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-  <h2 class="text-center mb-4">Edit Measurement ✏️</h2>
+<section class="hero">
+  <h2 class="fw-bold">✏️ Edit Measurement</h2>
+  <p>Make changes to your saved details</p>
+</section>
 
-  <form method="POST" class="card shadow-sm p-4 mx-auto" style="max-width: 600px;">
-    {% csrf_token %}
+<div class="container py-5 fade-in">
+  <div class="card mx-auto" style="max-width: 600px;">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="form-label">Gender</label>
+        <select class="form-control" id="gender" name="gender" required>
+          <option value="male" {% if measurement.gender == 'male' %}selected{% endif %}>Men's</option>
+          <option value="female" {% if measurement.gender == 'female' %}selected{% endif %}>Women's</option>
+        </select>
+      </div>
 
-    <div class="mb-3">
-      <label class="form-label">Gender</label>
-      <select name="gender" id="gender" class="form-select" required>
-        <option value="male" {% if measurement.gender == 'male' %}selected{% endif %}>Men's</option>
-        <option value="female" {% if measurement.gender == 'female' %}selected{% endif %}>Women's</option>
-      </select>
-    </div>
+      <!-- Add your measurement inputs here (same as add form) -->
+      <div id="fields-area">
+        {% if measurement.gender == 'male' %}
+          <div class='mb-3'><label>Arm Length</label><input type='number' name='arm_length' value='{{measurement.arm_length}}' class='form-control'></div>
+          <div class='mb-3'><label>Shoulder</label><input type='number' name='shoulder' value='{{measurement.shoulder}}' class='form-control'></div>
+          <div class='mb-3'><label>Neck Size</label><input type='number' name='neck_size' value='{{measurement.neck_size}}' class='form-control'></div>
+        {% else %}
+          <div class='mb-3'><label>Height</label><input type='number' name='height' value='{{measurement.height}}' class='form-control'></div>
+          <div class='mb-3'><label>Chest</label><input type='number' name='chest' value='{{measurement.chest}}' class='form-control'></div>
+          <div class='mb-3'><label>Waist</label><input type='number' name='waist' value='{{measurement.waist}}' class='form-control'></div>
+        {% endif %}
+      </div>
 
-    <!-- Female Fields -->
-    <div id="female-fields" class="{% if measurement.gender != 'female' %}d-none{% endif %}">
-      <div class="mb-3">
-        <label class="form-label">Height (cm)</label>
-        <input type="number" name="height" value="{{ measurement.height }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Chest (cm)</label>
-        <input type="number" name="chest" value="{{ measurement.chest }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Waist (cm)</label>
-        <input type="number" name="waist" value="{{ measurement.waist }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Hips (cm)</label>
-        <input type="number" name="hips" value="{{ measurement.hips }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Arm Length (cm)</label>
-        <input type="number" name="arm_length" value="{{ measurement.arm_length }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Bust (cm)</label>
-        <input type="number" name="bust" value="{{ measurement.bust }}" class="form-control">
-      </div>
-    </div>
-
-    <!-- Male Fields -->
-    <div id="male-fields" class="{% if measurement.gender != 'male' %}d-none{% endif %}">
-      <div class="mb-3">
-        <label class="form-label">Arm Length (cm)</label>
-        <input type="number" name="arm_length" value="{{ measurement.arm_length }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Shoulder (cm)</label>
-        <input type="number" name="shoulder" value="{{ measurement.shoulder }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Hand (cm)</label>
-        <input type="number" name="hand" value="{{ measurement.hand }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Shirt Length (cm)</label>
-        <input type="number" name="shirt_length" value="{{ measurement.shirt_length }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Trouser Length (cm)</label>
-        <input type="number" name="trouser_length" value="{{ measurement.trouser_length }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Neck Size (cm)</label>
-        <input type="number" name="neck_size" value="{{ measurement.neck_size }}" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Shirt Size</label>
-        <input type="text" name="shirt_size" value="{{ measurement.shirt_size }}" class="form-control">
-      </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary w-100 mt-3">Update Measurement ✅</button>
-    <a href="{% url 'my_measurements' %}" class="btn btn-secondary w-100 mt-2">⬅ Back to My Measurements</a>
-  </form>
+      <button type="submit" class="btn btn-primary w-100 mt-3">Update ✅</button>
+    </form>
+  </div>
 </div>
-
-<script>
-  const genderSelect = document.getElementById("gender");
-  const femaleFields = document.getElementById("female-fields");
-  const maleFields = document.getElementById("male-fields");
-
-  genderSelect.addEventListener("change", function () {
-    if (this.value === "female") {
-      femaleFields.classList.remove("d-none");
-      maleFields.classList.add("d-none");
-    } else if (this.value === "male") {
-      maleFields.classList.remove("d-none");
-      femaleFields.classList.add("d-none");
-    } else {
-      maleFields.classList.add("d-none");
-      femaleFields.classList.add("d-none");
-    }
-  });
-</script>
 {% endblock %}
