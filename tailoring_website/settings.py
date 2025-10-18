@@ -1,9 +1,10 @@
 from pathlib import Path
 import os
-import dj_database_url  
+import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+
 # --------------------------------------------------
 # Base directory
 # --------------------------------------------------
@@ -13,7 +14,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security
 # --------------------------------------------------
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-local-dev-secret-key')
-
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = os.environ.get(
@@ -25,20 +25,28 @@ ALLOWED_HOSTS = os.environ.get(
 # Application definition
 # --------------------------------------------------
 INSTALLED_APPS = [
+    # Django default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app',  # ✅ main app
-    'cloudinary_storage',
+
+    # Your app
+    'main_app',
+
+    # Cloudinary
     'cloudinary',
+    'cloudinary_storage',
 ]
 
-
+# --------------------------------------------------
+# Middleware
+# --------------------------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ✅ Added for static file serving
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -47,16 +55,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
+# --------------------------------------------------
+# URL Configuration
+# --------------------------------------------------
 ROOT_URLCONF = 'tailoring_website.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],  # ✅ Optional: custom templates folder
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -104,26 +115,29 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# --------------------------------------------------
+# Cloudinary Configuration
+# --------------------------------------------------
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
     'API_KEY': os.environ.get('API_KEY'),
     'API_SECRET': os.environ.get('API_SECRET'),
 }
 
-
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # --------------------------------------------------
-# Static and Media files
+# Static & Media Files
 # --------------------------------------------------
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']  # ✅ fixed (admin styling depends on this)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-if not DEBUG:
-    STATICFILES_DIRS = [BASE_DIR / "staticfiles/media"]
+# Whitenoise setup
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # --------------------------------------------------
 # Authentication redirects
@@ -143,5 +157,3 @@ SESSION_SAVE_EVERY_REQUEST = True
 # Default primary key field type
 # --------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-STATICFILES_DIRS = []
