@@ -5,14 +5,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Product, Order, Measurement
 from .models import ContactMessage
-from django.http import HttpResponse
-
-def create_admin(request):
-    if User.objects.filter(username='admin').exists():
-        return HttpResponse("Admin already exists ✅")
-    User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
-    return HttpResponse("Superuser created successfully ✅")
-
 
 # -----------------------
 # Home page
