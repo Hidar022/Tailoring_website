@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Product, Order, Measurement
-from .models import ContactMessage
+from .models import Product, Order, Measurement, ContactMessage
+
 
 # -----------------------
 # Home page
@@ -19,12 +20,12 @@ def home(request):
 # -----------------------
 def register(request):
     if request.method == "POST":
-        username = request.POST.get("username")
-        email = request.POST.get("email")
-        password = request.POST.get("password")
-        confirm_password = request.POST.get("confirm_password")
+        username = request.POST.get("username", "").strip()
+        email = request.POST.get("email", "").strip()
+        password1 = request.POST.get("password1", "").strip()
+        password2 = request.POST.get("password2", "").strip()
 
-        if password != confirm_password:
+        if password1 != password2:
             messages.error(request, "Passwords do not match ❌")
             return redirect("register")
 
@@ -32,7 +33,10 @@ def register(request):
             messages.error(request, "Username already taken ❌")
             return redirect("register")
 
-        User.objects.create_user(username=username, email=email, password=password)
+        # Create user
+        user = User.objects.create_user(username=username, email=email, password=password1)
+        user.save()
+
         messages.success(request, "Account created successfully ✅")
         return redirect("login")
 
@@ -44,10 +48,11 @@ def register(request):
 # -----------------------
 def login_user(request):
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+        username = request.POST.get("username", "").strip()
+        password = request.POST.get("password", "").strip()
 
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             login(request, user)
             messages.success(request, f"Welcome back, {user.username}! ✅")
@@ -57,6 +62,7 @@ def login_user(request):
             return redirect("login")
 
     return render(request, "login.html")
+
 
 
 # -----------------------
@@ -75,7 +81,24 @@ def logout_user(request):
 def about(request):
     return render(request, "about.html")
 
+
 def contact(request):
+    if request.method == "POST":
+        name = request.POST.get("name", "").strip()
+        email = request.POST.get("email", "").strip()
+        subject = request.POST.get("subject", "").strip()
+        message = request.POST.get("message", "").strip()
+
+        ContactMessage.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message
+        )
+
+        messages.success(request, "✅ Your message has been sent successfully!")
+        return redirect("contact")
+
     return render(request, "contact.html")
 
 
@@ -87,17 +110,14 @@ def add_measurements(request):
     if request.method == "POST":
         gender = request.POST.get("gender")
 
-        # ✅ Check if user already has a measurement for this gender
         measurement, created = Measurement.objects.get_or_create(user=request.user, gender=gender)
 
-        # Common fields
         measurement.height = request.POST.get("height")
         measurement.chest = request.POST.get("chest")
         measurement.waist = request.POST.get("waist")
         measurement.hips = request.POST.get("hips")
         measurement.arm_length = request.POST.get("arm_length")
 
-        # Gender-specific fields
         if gender == "female":
             measurement.bust = request.POST.get("bust")
             measurement.shoulder = None
@@ -122,7 +142,6 @@ def add_measurements(request):
         else:
             messages.success(request, f"{gender.capitalize()} measurement updated successfully ✅")
 
-        # ✅ Redirect with gender flag to highlight section
         return redirect(f"/my-measurements/?show={gender}")
 
     return render(request, "add_measurements.html")
@@ -132,14 +151,12 @@ def add_measurements(request):
 def my_measurements(request):
     female_measurements = Measurement.objects.filter(user=request.user, gender="female").order_by("-date_added")
     male_measurements = Measurement.objects.filter(user=request.user, gender="male").order_by("-date_added")
-
-    # ✅ Detect which gender section to highlight (after adding/editing)
     show_gender = request.GET.get("show", None)
 
     context = {
         "female_measurements": female_measurements,
         "male_measurements": male_measurements,
-        "show_gender": show_gender,  # used in template
+        "show_gender": show_gender,
     }
     return render(request, "my_measurements.html", context)
 
@@ -208,23 +225,3 @@ def my_orders(request):
         order.total_price = order.quantity * order.product.price
 
     return render(request, "my_orders.html", {"orders": orders})
-
-
-def contact(request):
-    if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        subject = request.POST.get("subject")
-        message = request.POST.get("message")
-
-        ContactMessage.objects.create(
-            name=name,
-            email=email,
-            subject=subject,
-            message=message
-        )
-
-        messages.success(request, "✅ Your message has been sent successfully!")
-        return redirect("contact")
-
-    return render(request, "contact.html")
