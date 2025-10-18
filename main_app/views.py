@@ -110,16 +110,23 @@ def add_measurements(request):
     if request.method == "POST":
         gender = request.POST.get("gender")
 
-        measurement, created = Measurement.objects.get_or_create(user=request.user, gender=gender)
+        measurement, created = Measurement.objects.get_or_create(
+            user=request.user, gender=gender
+        )
 
-        measurement.height = request.POST.get("height")
-        measurement.chest = request.POST.get("chest")
-        measurement.waist = request.POST.get("waist")
-        measurement.hips = request.POST.get("hips")
-        measurement.arm_length = request.POST.get("arm_length")
+        # Helper function to handle empty fields
+        def parse_float(value):
+            return float(value) if value.strip() != "" else None
+
+        # Assign safely
+        measurement.height = parse_float(request.POST.get("height", ""))
+        measurement.chest = parse_float(request.POST.get("chest", ""))
+        measurement.waist = parse_float(request.POST.get("waist", ""))
+        measurement.hips = parse_float(request.POST.get("hips", ""))
+        measurement.arm_length = parse_float(request.POST.get("arm_length", ""))
 
         if gender == "female":
-            measurement.bust = request.POST.get("bust")
+            measurement.bust = parse_float(request.POST.get("bust", ""))
             measurement.shoulder = None
             measurement.hand = None
             measurement.shirt_length = None
@@ -127,12 +134,12 @@ def add_measurements(request):
             measurement.neck_size = None
             measurement.shirt_size = None
         else:
-            measurement.shoulder = request.POST.get("shoulder")
-            measurement.hand = request.POST.get("hand")
-            measurement.shirt_length = request.POST.get("shirt_length")
-            measurement.trouser_length = request.POST.get("trouser_length")
-            measurement.neck_size = request.POST.get("neck_size")
-            measurement.shirt_size = request.POST.get("shirt_size")
+            measurement.shoulder = parse_float(request.POST.get("shoulder", ""))
+            measurement.hand = parse_float(request.POST.get("hand", ""))
+            measurement.shirt_length = parse_float(request.POST.get("shirt_length", ""))
+            measurement.trouser_length = parse_float(request.POST.get("trouser_length", ""))
+            measurement.neck_size = parse_float(request.POST.get("neck_size", ""))
+            measurement.shirt_size = parse_float(request.POST.get("shirt_size", ""))
             measurement.bust = None
 
         measurement.save()
@@ -145,6 +152,7 @@ def add_measurements(request):
         return redirect(f"/my-measurements/?show={gender}")
 
     return render(request, "add_measurements.html")
+
 
 
 @login_required
@@ -160,21 +168,29 @@ def my_measurements(request):
     }
     return render(request, "my_measurements.html", context)
 
-
 @login_required
-def edit_measurement(request, measurement_id):
-    measurement = get_object_or_404(Measurement, id=measurement_id, user=request.user)
+def edit_measurement(request, id):
+    measurement = get_object_or_404(Measurement, id=id, user=request.user)
 
     if request.method == "POST":
-        measurement.gender = request.POST.get("gender")
-        measurement.height = request.POST.get("height")
-        measurement.chest = request.POST.get("chest")
-        measurement.waist = request.POST.get("waist")
-        measurement.hips = request.POST.get("hips")
-        measurement.arm_length = request.POST.get("arm_length")
+        gender = request.POST.get("gender")
 
-        if measurement.gender == "female":
-            measurement.bust = request.POST.get("bust")
+        # Helper function to safely convert to float
+        def parse_float(value):
+            try:
+                return float(value) if value and value.strip() != "" else None
+            except ValueError:
+                return None
+
+        measurement.gender = gender
+        measurement.height = parse_float(request.POST.get("height"))
+        measurement.chest = parse_float(request.POST.get("chest"))
+        measurement.waist = parse_float(request.POST.get("waist"))
+        measurement.hips = parse_float(request.POST.get("hips"))
+        measurement.arm_length = parse_float(request.POST.get("arm_length"))
+
+        if gender == "female":
+            measurement.bust = parse_float(request.POST.get("bust"))
             measurement.shoulder = None
             measurement.hand = None
             measurement.shirt_length = None
@@ -182,20 +198,19 @@ def edit_measurement(request, measurement_id):
             measurement.neck_size = None
             measurement.shirt_size = None
         else:
-            measurement.shoulder = request.POST.get("shoulder")
-            measurement.hand = request.POST.get("hand")
-            measurement.shirt_length = request.POST.get("shirt_length")
-            measurement.trouser_length = request.POST.get("trouser_length")
-            measurement.neck_size = request.POST.get("neck_size")
-            measurement.shirt_size = request.POST.get("shirt_size")
+            measurement.shoulder = parse_float(request.POST.get("shoulder"))
+            measurement.hand = parse_float(request.POST.get("hand"))
+            measurement.shirt_length = parse_float(request.POST.get("shirt_length"))
+            measurement.trouser_length = parse_float(request.POST.get("trouser_length"))
+            measurement.neck_size = parse_float(request.POST.get("neck_size"))
+            measurement.shirt_size = parse_float(request.POST.get("shirt_size"))
             measurement.bust = None
 
         measurement.save()
-        messages.success(request, "Measurement updated successfully ✅")
-        return redirect(f"/my-measurements/?show={measurement.gender}")
+        messages.success(request, f"{gender.capitalize()} measurement updated successfully ✅")
+        return redirect(f"/my-measurements/?show={gender}")
 
     return render(request, "edit_measurement.html", {"measurement": measurement})
-
 
 # -----------------------
 # Order Product

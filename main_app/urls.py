@@ -16,7 +16,8 @@ urlpatterns = [
     # Measurements
     path('add-measurements/', views.add_measurements, name='add_measurements'),
     path('my-measurements/', views.my_measurements, name='my_measurements'),
-    path('edit-measurement/<int:measurement_id>/', views.edit_measurement, name='edit_measurement'),
+    path('edit-measurement/<int:id>/', views.edit_measurement, name='edit_measurement'),
+
 
     # Orders
     path('order/<int:product_id>/', views.create_order, name='create_order'),

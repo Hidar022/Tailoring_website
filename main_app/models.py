@@ -46,7 +46,7 @@ class Measurement(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
 
-    height = models.FloatField(help_text="Full body height")
+    height = models.FloatField(null=True, blank=True, help_text="Full body height")
     chest = models.FloatField(null=True, blank=True)
     waist = models.FloatField(null=True, blank=True)
     hips = models.FloatField(null=True, blank=True)
