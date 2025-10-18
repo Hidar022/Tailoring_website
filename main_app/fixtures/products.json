@@ -31,16 +31,6 @@
   },
   {
     "model": "main_app.product",
-    "pk": 4,
-    "fields": {
-      "name": "White Shirt",
-      "description": "Premium cotton white shirt, suitable for formal and casual occasions.",
-      "price": "8000.00",
-      "image": "products/white-shirt.jpg"
-    }
-  },
-  {
-    "model": "main_app.product",
     "pk": 5,
     "fields": {
       "name": "Blue Shirt",
@@ -58,5 +48,15 @@
       "price": "12000.00",
       "image": "products/casual-trousers.jpg"
     }
+  },
+  {
+    "model": "main_app.product",
+    "pk": 1,
+    "fields": {
+      "name": "White Shirt",
+      "description": "Classic white shirt for formal wear.",
+      "price": "2500.00",
+      "image": "products/white_shirt.jpg"
   }
+}
 ]
