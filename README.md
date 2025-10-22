@@ -5,7 +5,7 @@ I’m a passionate **Django Developer** who loves building full-stack web applic
 
  🚀 About Me
 - 🔭 I’m currently working on: **Tailoring Management System (Django Project)**  
-- 🌱 Learning more about **APIs**, **JavaScript**, and **deployment**  
+- 🌱 Learning more about **APIs**, **Databases**, and **deployment**  
 - 👯 Open to collaborate on **Django, Python, and open-source projects**  
 - 💬 Ask me about **web development**, **database design**, or **backend logic**  
 - ⚡ Fun fact: I enjoy designing user-friendly systems that look great and work even better!  
