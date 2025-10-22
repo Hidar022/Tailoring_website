@@ -38,15 +38,18 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
 
           {% if user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'my_orders' %}">My Orders</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ user.username }}</a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="{% url 'my_measurements' %}">My Measurements</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
-              </ul>
-            </li>
+           <li class="nav-item"><a class="nav-link" href="{% url 'my_orders' %}">My Orders</a></li>
+
+  <!-- My Measurements as a top-level nav item -->
+          <li class="nav-item"><a class="nav-link" href="{% url 'my_measurements' %}">My Measurements</a></li>
+
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ user.username }}</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+             <li><hr class="dropdown-divider"></li>
+             <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
+             </ul>
+             </li>
           {% else %}
             <li class="nav-item"><a class="btn btn-glow ms-3" href="{% url 'login' %}">Login</a></li>
           {% endif %}
