@@ -14,11 +14,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security
 # --------------------------------------------------
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-local-dev-secret-key')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get(
     'ALLOWED_HOSTS',
-    '127.0.0.1,localhost,hidar-tailoring-shop.onrender.com'
+    '127.0.0.1,localhost,.railway.app'
 ).split(',')
 
 # --------------------------------------------------
@@ -79,17 +79,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'tailoring_website.wsgi.application'
 
 # --------------------------------------------------
-# Database (Render PostgreSQL or local SQLite)
+# Database
 # --------------------------------------------------
-if os.environ.get('DATABASE_URL'):
+# Use DATABASE_URL only if you want PostgreSQL (production)
+if os.environ.get('RAILWAY_POSTGRESQL_URL'):
+    import dj_database_url
     DATABASES = {
-        'default': dj_database_url.config(
-            default=os.environ['DATABASE_URL'],
-            conn_max_age=600,
-            ssl_require=True
-        )
+        'default': dj_database_url.parse(os.environ['RAILWAY_POSTGRESQL_URL'], conn_max_age=600)
     }
 else:
+    # Local development: SQLite
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -131,7 +130,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # --------------------------------------------------
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # ✅ fixed (admin styling depends on this)
+STATICFILES_DIRS = [BASE_DIR / 'static'] if (BASE_DIR / 'static').exists() else []
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
