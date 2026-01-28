@@ -55,7 +55,7 @@
              onmouseout="this.style.transform=''; this.style.boxShadow='';">
 
           {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" 
+            <img src="{{ product.image|image_url }}" alt="{{ product.name }}" 
                  class="card-img-top rounded-top-4" style="height: 250px; object-fit: cover;">
           {% else %}
             <img src="https://via.placeholder.com/350x250" class="card-img-top rounded-top-4" alt="No image">
